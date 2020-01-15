@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace AutomationTestSiiFramework.Extensions
 {
@@ -13,7 +14,7 @@ namespace AutomationTestSiiFramework.Extensions
         public static string BrowserType { get; set; }
         public static string GridUrl { get; set; }
         public static double DefaultTimeout { get; } = 5;
-        public static string DirectoryPath { get; } = "C:\\screenshots";
+        public static string DirectoryPath { get; }  
         public static string InternetAppUrl { get; set; }
         public static string ShopAppUrl { get; set; }
     }

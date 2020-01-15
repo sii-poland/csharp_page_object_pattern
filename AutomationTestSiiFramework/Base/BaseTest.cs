@@ -14,6 +14,8 @@ namespace AutomationTestSiiFramework.Base
     [AllureNUnit]
     public class BaseTest
     {
+        protected Container Container;
+
         [SetUp]
         public void Setup()
         {
@@ -43,7 +45,5 @@ namespace AutomationTestSiiFramework.Base
             driver.Close();
             driver.Quit();
         }
-
-        protected Container Container;
     }
 }

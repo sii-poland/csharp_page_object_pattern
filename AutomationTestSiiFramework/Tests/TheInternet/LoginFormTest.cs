@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 namespace AutomationTestSiiFramework.Tests.TheInternet
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Fixtures)]
     internal class LoginFormTest : BaseTest
     {
         [Test]

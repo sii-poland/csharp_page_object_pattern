@@ -8,8 +8,9 @@ using OpenQA.Selenium;
 namespace AutomationTestSiiFramework.Tests.PrestaShop
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Self)]
-    internal class ShopTests : BaseTest
+    [Parallelizable(ParallelScope.Fixtures)]
+
+    public class ShopTests : BaseTest
     {
         [Test]
         public void Shop_AddToCartDefineProduct_CheckThatInDetailsIsTheSameContentAsWeExpected()
