@@ -22,7 +22,7 @@ namespace AutomationTestSiiFramework.Base
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true);
-            IConfiguration config = builder.Build();
+            var config = builder.Build();
             TestSettings.BrowserName = config["browserName"];
             TestSettings.BrowserType = config["browserType"];
             TestSettings.GridUrl = config["gridUrl"];
