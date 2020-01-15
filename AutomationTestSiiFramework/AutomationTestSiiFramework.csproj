@@ -40,4 +40,8 @@
     <PackageReference Include="SimpleInjector" Version="4.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DocumentationImages\" />
+  </ItemGroup>
+
 </Project>

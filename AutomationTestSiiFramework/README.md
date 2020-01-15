@@ -8,22 +8,22 @@ Since everything is set up, the tests can be added and run straight away.
 * parallel test execution ready
 * full control by annotations
 * most popular browsers preconfigured
-* configurability by configuration properties file
+* configurability by configuration .json file
 * pretty and highly readable test result report
 * easy for extension and customisation
-* screenshots automatically added to report
+* screenshots automatically added to report (in every action and attached to Allure report)
 * easy integrate with selenium grid
 
 ## How to use?
 
-dotnet test 
+dotnet test (in your console) you need to have .NET Core on your computer
 
-##appsettings.json - possible to change default values
+## appsettings.json - possible to change default values
 
 For using parameters you can change values in appsettings.json file
 
 
-##Allure Report
+## Allure Report
 After run test you can generate report from your tests.
 allure serve (in directory where your tests are running)
 

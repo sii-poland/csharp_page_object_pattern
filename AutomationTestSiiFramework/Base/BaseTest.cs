@@ -4,7 +4,6 @@ using LLibrary;
 using Microsoft.Extensions.Configuration;
 using NUnit.Allure.Core;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SimpleInjector;
 
@@ -28,6 +27,8 @@ namespace AutomationTestSiiFramework.Base
             TestSettings.GridUrl = config["gridUrl"];
             TestSettings.ShopAppUrl = config["ShopAppUrl"];
             TestSettings.InternetAppUrl = config["InternetAppUrl"];
+            TestSettings.ScreenshotsPath = config["Screenshots"];
+            TestSettings.DefaultTimeout = int.Parse(config["DefaultTimeout"]);
             Container = new Container();
             var driverFactory = new WebDriverFactory();
             var logger = new L();

@@ -14,11 +14,6 @@ namespace AutomationTestSiiFramework.Tests.TheInternet.LoginForm
         public By PasswordField => By.CssSelector("#password");
         public By LoginButton => By.CssSelector(".fa-sign-in");
 
-        public LoginFormPage Go()
-        {
-            driver.Navigate().GoToUrl(TestSettings.InternetAppUrl);
-            return this;
-        }
         public LoginFormPage Go(string path)
         {
             driver.Navigate().GoToUrl($"{TestSettings.InternetAppUrl}{path}");

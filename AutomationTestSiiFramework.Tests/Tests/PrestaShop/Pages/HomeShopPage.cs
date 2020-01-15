@@ -14,7 +14,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages
 
         public ProductDetailsPage ChooseProductByName(string name)
         {
-            driver.GetElementByDefineTextFromList(_productTitle, name).Click();
+            driver.ClickOnElement(driver.GetElementByDefineTextFromList(_productTitle, name));
             return new ProductDetailsPage(driver);
         }
 

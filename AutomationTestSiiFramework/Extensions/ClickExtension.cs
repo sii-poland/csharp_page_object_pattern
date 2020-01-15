@@ -9,7 +9,17 @@ namespace AutomationTestSiiFramework.Extensions
         public static void ClickOnElement(this IWebDriver driver, By by)
         {
             driver.WaitForClickable(by);
+            driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", driver.FindElement(by),
+                "border: 2px solid red");
             driver.FindElement(by).Click();
+        }
+
+        public static void ClickOnElement(this IWebDriver driver, IWebElement element)
+        {
+            driver.WaitForClickable(element);
+            driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", element,
+                "border: 2px solid red");
+            element.Click();
         }
 
         public static void Click(this IWebDriver driver, By by)
