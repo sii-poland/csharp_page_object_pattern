@@ -1,4 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
+using AutomationTestSiiFramework.Extensions;
 using AutomationTestSiiFramework.Tests.PrestaShop.Pages;
 using FluentAssertions;
 using NUnit.Framework;
@@ -15,7 +16,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop
         {
             var driver = Container.GetInstance<IWebDriver>();
             var homeShopPage = new HomeShopPage(driver);
-            var product = homeShopPage.Go("http://5.196.7.235/").ChooseProductByName("HUMMINGBIRD TSHIRT").GetProduct();
+            var product = homeShopPage.Go(TestSettings.ShopAppUrl).ChooseProductByName("HUMMINGBIRD TSHIRT").GetProduct();
             product.PriceOnlyValue.Should().Be(19.12);
             product.Price.Should().Be("$19.12");
             product.Name.Should().Be("HUMMINGBIRD TSHIRT");
@@ -26,7 +27,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop
         {
             var driver = Container.GetInstance<IWebDriver>();
             var homeShopPage = new HomeShopPage(driver);
-            var orderConfirmationPage = homeShopPage.Go("http://5.196.7.235/")
+            var orderConfirmationPage = homeShopPage.Go(TestSettings.ShopAppUrl)
                 .ChooseProductByName("HUMMINGBIRD TSHIRT")
                 .SetSize("L")
                 .SetQuantity(10).AddToCart().ClickOnProceedToCheckout().ConfirmProceedToCheckout()

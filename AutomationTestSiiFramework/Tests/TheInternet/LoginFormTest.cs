@@ -16,7 +16,7 @@ namespace AutomationTestSiiFramework.Tests.TheInternet
             var driver = Container.GetInstance<IWebDriver>();
             var loginFormPage = new LoginFormPage(driver);
             loginFormPage
-                .Go()
+                .Go("/login")
                 .FillLoginForm("tomsmith", "SuperSecretPassword!")
                 .Submit()
                 .GetSuccessLoginMessage()
@@ -30,7 +30,7 @@ namespace AutomationTestSiiFramework.Tests.TheInternet
             var driver = Container.GetInstance<IWebDriver>();
             var loginFormPage = new LoginFormPage(driver);
             loginFormPage
-                .Go()
+                .Go("/login")
                 .FillLoginForm("tomsmith", "invalid_password")
                 .Submit()
                 .GetInvalidPasswordMessage()

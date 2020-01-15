@@ -18,7 +18,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess
 
         private By Continue => By.Name("continue");
 
-        public FillAddressFragmentPage FillPersonalInformation(string firstName, string lastName, string email,
+        public OrderAddressFragmentPage FillPersonalInformation(string firstName, string lastName, string email,
             string socialTitle)
         {
             driver.FindElementsGraterThenZero(SocialTitle).First(x => x.Text == socialTitle).Click();
@@ -26,7 +26,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess
             driver.SendKeysWithWait(LastName, lastName);
             driver.SendKeysWithWait(Email, email);
             driver.ClickOnElement(Continue);
-            return new FillAddressFragmentPage(driver);
+            return new OrderAddressFragmentPage(driver);
         }
     }
 }

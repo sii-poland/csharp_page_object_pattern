@@ -10,13 +10,18 @@ namespace AutomationTestSiiFramework.Tests.TheInternet.LoginForm
         {
         }
 
-        private By UsernameField => By.CssSelector("#username");
-        private By PasswordField => By.CssSelector("#password");
-        private By LoginButton => By.CssSelector(".fa-sign-in");
+        public By UsernameField => By.CssSelector("#username");
+        public By PasswordField => By.CssSelector("#password");
+        public By LoginButton => By.CssSelector(".fa-sign-in");
 
         public LoginFormPage Go()
         {
-            driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
+            driver.Navigate().GoToUrl(TestSettings.InternetAppUrl);
+            return this;
+        }
+        public LoginFormPage Go(string path)
+        {
+            driver.Navigate().GoToUrl($"{TestSettings.InternetAppUrl}{path}");
             return this;
         }
 

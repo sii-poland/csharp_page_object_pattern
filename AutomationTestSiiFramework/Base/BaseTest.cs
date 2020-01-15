@@ -4,6 +4,7 @@ using LLibrary;
 using Microsoft.Extensions.Configuration;
 using NUnit.Allure.Core;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SimpleInjector;
 
@@ -23,6 +24,8 @@ namespace AutomationTestSiiFramework.Base
             TestSettings.BrowserName = config["browserName"];
             TestSettings.BrowserType = config["browserType"];
             TestSettings.GridUrl = config["gridUrl"];
+            TestSettings.ShopAppUrl = config["ShopAppUrl"];
+            TestSettings.InternetAppUrl = config["InternetAppUrl"];
             Container = new Container();
             var driverFactory = new WebDriverFactory();
             var logger = new L();

@@ -5,20 +5,20 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess
 {
-    public class FillAddressFragmentPage : BasePage
+    public class OrderAddressFragmentPage : BasePage
     {
-        public FillAddressFragmentPage(IWebDriver driver) : base(driver)
+        public OrderAddressFragmentPage(IWebDriver driver) : base(driver)
         {
         }
 
-        private By Address => By.Name("address1");
-        private By City => By.Name("city");
-        private By StateDropdown => By.Name("id_state");
-        private By CountryDropdown => By.Name("id_country");
+        public By Address => By.Name("address1");
+        public By City => By.Name("city");
+        public By StateDropdown => By.Name("id_state");
+        public By CountryDropdown => By.Name("id_country");
 
-        private By PostCode => By.Name("postcode");
+        public By PostCode => By.Name("postcode");
 
-        public By ConfirmAddress => By.Name("confirm-addresses");
+        private By ConfirmAddress => By.Name("confirm-addresses");
 
 
         public OrderShippingFragmentPage FillAddresses(string address, string city, string country, string state,

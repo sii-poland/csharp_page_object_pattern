@@ -12,8 +12,9 @@ namespace AutomationTestSiiFramework.Extensions
         public static string DriverPath => $"{PathToSolution}\\AutomationTestSiiFramework\\Drivers";
         public static string BrowserType { get; set; }
         public static string GridUrl { get; set; }
-        public static string ApplicationAddress { get; set; }
         public static double DefaultTimeout { get; } = 5;
         public static string DirectoryPath { get; } = "C:\\screenshots";
+        public static string InternetAppUrl { get; set; }
+        public static string ShopAppUrl { get; set; }
     }
 }
