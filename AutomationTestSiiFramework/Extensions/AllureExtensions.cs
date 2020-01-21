@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Allure.Commons;
 using LLibrary;
 using OpenQA.Selenium;
@@ -21,9 +22,10 @@ namespace AutomationTestSiiFramework.Extensions
             try
             {
                 title = CleanFileName(title);
-                path = $"{TestSettings.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
+                path = $"{TestSettings.ConfigurationJson.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
                 Directory.CreateDirectory(path);
-                var pathToFile = $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}.png";
+                var pathToFile =
+                    $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
                 var screenshot = ((ITakesScreenshot) driver).GetScreenshot();
                 screenshot.SaveAsFile(pathToFile, ScreenshotImageFormat.Png);
                 AllureLifecycle.Instance.AddAttachment("name", ".png", pathToFile);

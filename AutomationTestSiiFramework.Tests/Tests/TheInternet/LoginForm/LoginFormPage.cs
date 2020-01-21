@@ -2,21 +2,21 @@
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.TheInternet.LoginForm
+namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 {
     public class LoginFormPage : BasePage
     {
+        private static By UsernameField => By.CssSelector("#username");
+        private static By PasswordField => By.CssSelector("#password");
+        private static By LoginButton => By.CssSelector(".fa-sign-in");
+
         public LoginFormPage(IWebDriver driver) : base(driver)
         {
         }
 
-        public By UsernameField => By.CssSelector("#username");
-        public By PasswordField => By.CssSelector("#password");
-        public By LoginButton => By.CssSelector(".fa-sign-in");
-
         public LoginFormPage Go(string path)
         {
-            driver.Navigate().GoToUrl($"{TestSettings.InternetAppUrl}{path}");
+            driver.Navigate().GoToUrl($"{TestSettings.ConfigurationJson.InternetAppUrl}{path}");
             return this;
         }
 

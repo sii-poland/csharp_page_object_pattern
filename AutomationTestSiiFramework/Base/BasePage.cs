@@ -6,6 +6,9 @@ namespace AutomationTestSiiFramework.Base
     {
         protected IWebDriver driver;
 
-        protected BasePage(IWebDriver driver) => this.driver = driver;
+        protected BasePage(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
     }
 }

@@ -2,17 +2,17 @@
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.TheInternet.LoginForm
+namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 {
     public class SecureAreaPage : BasePage
     {
+        private static By LogoutButton => By.CssSelector(".icon-signout");
+        private static By SuccessMessage => By.CssSelector(".success");
+        private static By InvalidPasswordMessage => By.CssSelector(".error");
+
         public SecureAreaPage(IWebDriver driver) : base(driver)
         {
         }
-
-        private By LogoutButton => By.CssSelector(".icon-signout");
-        private By SuccessMessage => By.CssSelector(".success");
-        private By InvalidPasswordMessage => By.CssSelector(".error");
 
         public SecureAreaPage Logout()
         {
@@ -20,14 +20,7 @@ namespace AutomationTestSiiFramework.Tests.TheInternet.LoginForm
             return this;
         }
 
-        public string GetSuccessLoginMessage()
-        {
-            return driver.WaitAndFind(SuccessMessage).Text.Replace("\r\n", "");
-        }
-
-        public string GetInvalidPasswordMessage()
-        {
-            return driver.WaitAndFind(InvalidPasswordMessage).Text.Replace("\r\n", "");
-        }
+        public string GetSuccessLoginMessage() => driver.WaitAndFind(SuccessMessage).Text.Replace("\r\n", "");
+        public string GetInvalidPasswordMessage() => driver.WaitAndFind(InvalidPasswordMessage).Text.Replace("\r\n", "");
     }
 }

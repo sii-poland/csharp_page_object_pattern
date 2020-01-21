@@ -20,7 +20,8 @@ namespace AutomationTestSiiFramework.Extensions
                     var firefoxDriver = new FirefoxDriver(TestSettings.DriverPath);
                     return new WebDriverListener(firefoxDriver, logger);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(TestSettings.BrowserName), TestSettings.BrowserName,
+                    throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
+                        TestSettings.ConfigurationJson.BrowserName,
                         null);
             }
         }

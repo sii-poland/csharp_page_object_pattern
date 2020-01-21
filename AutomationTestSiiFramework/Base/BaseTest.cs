@@ -1,7 +1,5 @@
-﻿using System.IO;
-using AutomationTestSiiFramework.Extensions;
+﻿using AutomationTestSiiFramework.Extensions;
 using LLibrary;
-using Microsoft.Extensions.Configuration;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -13,28 +11,16 @@ namespace AutomationTestSiiFramework.Base
     [AllureNUnit]
     public class BaseTest
     {
-        protected Container Container;
-
         [SetUp]
         public void Setup()
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false, true);
-            var config = builder.Build();
-            TestSettings.BrowserName = config["browserName"];
-            TestSettings.BrowserType = config["browserType"];
-            TestSettings.GridUrl = config["gridUrl"];
-            TestSettings.ShopAppUrl = config["ShopAppUrl"];
-            TestSettings.InternetAppUrl = config["InternetAppUrl"];
-            TestSettings.ScreenshotsPath = config["Screenshots"];
-            TestSettings.DefaultTimeout = int.Parse(config["DefaultTimeout"]);
             Container = new Container();
             var driverFactory = new WebDriverFactory();
             var logger = new L();
-            var driver = TestSettings.BrowserType == "local"
-                ? driverFactory.GetWebDriver(TestSettings.BrowserName, logger)
-                : driverFactory.GetRemoteDriver(TestSettings.BrowserName, TestSettings.GridUrl);
+            var driver = TestSettings.ConfigurationJson.BrowserType == "local"
+                ? driverFactory.GetWebDriver(TestSettings.ConfigurationJson.BrowserName, logger)
+                : driverFactory.GetRemoteDriver(TestSettings.ConfigurationJson.BrowserName,
+                    TestSettings.ConfigurationJson.GridUrl);
             Container.RegisterInstance(driver);
             driver.Manage().Window.Maximize();
         }
@@ -43,8 +29,9 @@ namespace AutomationTestSiiFramework.Base
         public void TearDown()
         {
             var driver = Container.GetInstance<IWebDriver>();
-            driver.Close();
             driver.Quit();
         }
+
+        protected Container Container;
     }
 }

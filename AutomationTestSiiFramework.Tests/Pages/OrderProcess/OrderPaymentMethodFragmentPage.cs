@@ -2,22 +2,17 @@
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess
+namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
 {
     public class OrderPaymentMethodFragmentPage : BasePage
     {
+        private static By OrderWithObligationToPayButton => By.CssSelector("#payment-confirmation button");
+        private static By TermsOfService => By.CssSelector("#conditions-to-approve label");
+        private static By PayByBankWire => By.CssSelector("#payment-option-2");
+        private static By PayByCheck => By.CssSelector("#payment-option-1");
         public OrderPaymentMethodFragmentPage(IWebDriver driver) : base(driver)
         {
         }
-
-
-        public By OrderWithObligationToPayButton => By.CssSelector("#payment-confirmation button");
-
-        public By TermsOfService => By.CssSelector("#conditions-to-approve label");
-        public By PayByBankWire => By.CssSelector("#payment-option-2");
-
-        public By PayByCheck => By.CssSelector("#payment-option-1");
-
 
         public OrderPaymentMethodFragmentPage FillPaymentMethod(string method)
         {

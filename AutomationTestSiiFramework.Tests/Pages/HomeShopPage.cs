@@ -2,11 +2,11 @@
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages
+namespace AutomationTestSiiFramework.Tests.Pages
 {
     public class HomeShopPage : BasePage
     {
-        private readonly By _productTitle = By.CssSelector(".product-title");
+        private static By ProductTitle = By.CssSelector(".product-title");
 
         public HomeShopPage(IWebDriver driver) : base(driver)
         {
@@ -14,7 +14,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages
 
         public ProductDetailsPage ChooseProductByName(string name)
         {
-            driver.ClickOnElement(driver.GetElementByDefineTextFromList(_productTitle, name));
+            driver.ClickOnElement(driver.GetElementByDefineTextFromList(ProductTitle, name));
             return new ProductDetailsPage(driver);
         }
 

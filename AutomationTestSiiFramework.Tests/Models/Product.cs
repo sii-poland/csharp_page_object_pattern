@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop.Data
+namespace AutomationTestSiiFramework.Tests.Models
 {
     public class Product
     {
@@ -17,6 +17,6 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop.Data
 
         public string Description { get; }
 
-        public double PriceOnlyValue => double.Parse(Price.Replace("$", ""), CultureInfo.InvariantCulture);
+        public decimal PriceOnlyValue => decimal.Parse(Price.Replace("$", ""), CultureInfo.InvariantCulture);
     }
 }

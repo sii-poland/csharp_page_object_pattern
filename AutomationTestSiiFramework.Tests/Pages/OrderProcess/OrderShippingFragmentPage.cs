@@ -2,15 +2,14 @@
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess
+namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
 {
     public class OrderShippingFragmentPage : BasePage
     {
+        private static By ConFirmDeliveryOption => By.Name("confirmDeliveryOption");
         public OrderShippingFragmentPage(IWebDriver driver) : base(driver)
         {
         }
-
-        public By ConFirmDeliveryOption => By.Name("confirmDeliveryOption");
 
         public OrderPaymentMethodFragmentPage FillShippingMethod()
         {

@@ -22,31 +22,49 @@ namespace AutomationTestSiiFramework.Extensions
         }
 
         private void WebDriverListener_Navigating(object sender,
-            WebDriverNavigationEventArgs e) =>
+            WebDriverNavigationEventArgs e)
+        {
             LogMessage($"Navigating to {e.Url}");
+        }
 
         private void WebDriverListener_ElementClicked(object sender,
-            WebElementEventArgs e) =>
+            WebElementEventArgs e)
+        {
             LogScreenshot($"{e.Element} clicked");
+        }
 
         private void WebDriverListener_ElementClicking(object sender,
-            WebElementEventArgs e) =>
+            WebElementEventArgs e)
+        {
             LogMessage($"Clicking on the {e.Element.TagName} `{e.Element.Text}` {e.Element}");
+        }
 
         private void WebDriverListener_FindingElement(object sender,
-            FindElementEventArgs e) =>
+            FindElementEventArgs e)
+        {
             LogMessage($"Finding element `{e.FindMethod}`");
+        }
 
         private void WebDriverListener_ElementValueChanged(object sender,
-            WebElementValueEventArgs e) =>
+            WebElementValueEventArgs e)
+        {
             LogScreenshot($"Value of the {e.Element} changed to `{e.Value}`");
+        }
 
         private void WebDriverListener_Navigated(object sender,
-            WebDriverNavigationEventArgs e) =>
+            WebDriverNavigationEventArgs e)
+        {
             LogScreenshot($"Navigated to [{e.Driver.Title}]({e.Url})");
+        }
 
-        private void LogMessage(string text) => logger.Info(text);
+        private void LogMessage(string text)
+        {
+            logger.Info(text);
+        }
 
-        private void LogScreenshot(string text) => driver.SaveScreenshot(text, logger);
+        private void LogScreenshot(string text)
+        {
+            driver.SaveScreenshot(text, logger);
+        }
     }
 }

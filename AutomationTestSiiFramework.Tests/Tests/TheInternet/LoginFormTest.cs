@@ -1,10 +1,10 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Tests.TheInternet.LoginForm;
+using AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.TheInternet
+namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
 {
     [TestFixture]
     [Parallelizable(ParallelScope.Fixtures)]

@@ -1,17 +1,16 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
-using AutomationTestSiiFramework.Tests.PrestaShop.Pages.OrderProcess;
+using AutomationTestSiiFramework.Tests.Pages.OrderProcess;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop.Pages
+namespace AutomationTestSiiFramework.Tests.Pages
 {
     public class ShoppingCartPage : BasePage
     {
+        private static By PrimaryButton => By.CssSelector(".btn-primary");
         public ShoppingCartPage(IWebDriver driver) : base(driver)
         {
         }
-
-        private By PrimaryButton => By.CssSelector(".btn-primary");
 
         public OrderPersonalInformationFragmentPage ConfirmProceedToCheckout()
         {

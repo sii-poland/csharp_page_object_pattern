@@ -1,15 +1,14 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
-using AutomationTestSiiFramework.Tests.PrestaShop.Pages;
+using AutomationTestSiiFramework.Tests.Pages;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Tests.PrestaShop
+namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
 {
     [TestFixture]
     [Parallelizable(ParallelScope.Fixtures)]
-
     public class ShopTests : BaseTest
     {
         [Test]
@@ -17,8 +16,9 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop
         {
             var driver = Container.GetInstance<IWebDriver>();
             var homeShopPage = new HomeShopPage(driver);
-            var product = homeShopPage.Go(TestSettings.ShopAppUrl).ChooseProductByName("HUMMINGBIRD TSHIRT").GetProduct();
-            product.PriceOnlyValue.Should().Be(19.12);
+            var product = homeShopPage.Go(TestSettings.ConfigurationJson.ShopAppUrl).ChooseProductByName("HUMMINGBIRD TSHIRT")
+                .GetProduct();
+            product.PriceOnlyValue.Should().Be(19.12m);
             product.Price.Should().Be("$19.12");
             product.Name.Should().Be("HUMMINGBIRD TSHIRT");
         }
@@ -28,7 +28,7 @@ namespace AutomationTestSiiFramework.Tests.PrestaShop
         {
             var driver = Container.GetInstance<IWebDriver>();
             var homeShopPage = new HomeShopPage(driver);
-            var orderConfirmationPage = homeShopPage.Go(TestSettings.ShopAppUrl)
+            var orderConfirmationPage = homeShopPage.Go(TestSettings.ConfigurationJson.ShopAppUrl)
                 .ChooseProductByName("HUMMINGBIRD TSHIRT")
                 .SetSize("L")
                 .SetQuantity(10).AddToCart().ClickOnProceedToCheckout().ConfirmProceedToCheckout()
