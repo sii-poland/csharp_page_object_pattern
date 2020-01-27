@@ -28,7 +28,7 @@ namespace AutomationTestSiiFramework.Extensions
                     $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
                 var screenshot = ((ITakesScreenshot) driver).GetScreenshot();
                 screenshot.SaveAsFile(pathToFile, ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("name", ".png", pathToFile);
+                AllureLifecycle.Instance.AddAttachment(pathToFile, title);
             }
             catch (Exception ex)
             {

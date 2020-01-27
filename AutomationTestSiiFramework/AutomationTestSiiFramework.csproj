@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DocumentationImages\**" />
-    <EmbeddedResource Remove="DocumentationImages\**" />
-    <None Remove="DocumentationImages\**" />
-  </ItemGroup>
-
-  <ItemGroup>
    <None Update="allureConfig.json">
    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
    </None>
