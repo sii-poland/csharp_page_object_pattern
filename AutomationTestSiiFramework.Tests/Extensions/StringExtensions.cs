@@ -13,5 +13,9 @@ namespace AutomationTestSiiFramework.Tests.Extensions
                 CurrencySymbol = "$"
             });
         }
-    }
+
+        public static string RemoveNewLines(this string text)
+        {
+            return text.Replace("\r\n", "");
+        }
 }

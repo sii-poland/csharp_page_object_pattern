@@ -6,13 +6,13 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 {
     public class LoginFormPage : BasePage
     {
-        private static By UsernameField => By.CssSelector("#username");
-        private static By PasswordField => By.CssSelector("#password");
-        private static By LoginButton => By.CssSelector(".fa-sign-in");
-
         public LoginFormPage(IWebDriver driver) : base(driver)
         {
         }
+
+        private IWebElement UsernameField => Driver.FindElement(By.CssSelector("#username"));
+        private IWebElement PasswordField => Driver.FindElement(By.CssSelector("#password"));
+        private IWebElement LoginButton => Driver.FindElement(By.CssSelector(".fa-sign-in"));
 
         public LoginFormPage Go(string path)
         {

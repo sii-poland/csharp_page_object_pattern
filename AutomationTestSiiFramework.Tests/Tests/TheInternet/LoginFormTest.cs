@@ -2,7 +2,6 @@
 using AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
 {
@@ -18,7 +17,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
                 .Go("/login")
                 .FillLoginForm("tomsmith", "SuperSecretPassword!")
                 .Submit()
-                .GetSuccessLoginMessage()
+                .SuccessMessage
                 .Should().Be("You logged into a secure area!×");
             new SecureAreaPage(Driver).Logout();
         }
@@ -31,7 +30,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
                 .Go("/login")
                 .FillLoginForm("tomsmith", "invalid_password")
                 .Submit()
-                .GetInvalidPasswordMessage()
+                .InvalidPasswordMessage
                 .Should().Be("Your password is invalid!×");
         }
     }
