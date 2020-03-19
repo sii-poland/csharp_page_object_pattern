@@ -1,26 +1,23 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Tests.Pages.Products;
+using AutomationTestSiiFramework.Tests.Providers;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages
 {
     public class HomeShopPage : BasePage
     {
-        private static By ProductTitle = By.CssSelector(".product-title");
+        public readonly ProductsGridPage ProductsGrid;
 
         public HomeShopPage(IWebDriver driver) : base(driver)
         {
+            ProductsGrid = new ProductsGridPage(Driver);
         }
 
-        public ProductDetailsPage ChooseProductByName(string name)
+        public HomeShopPage Go()
         {
-            driver.ClickOnElement(driver.GetElementByDefineTextFromList(ProductTitle, name));
-            return new ProductDetailsPage(driver);
-        }
-
-        public HomeShopPage Go(string url)
-        {
-            driver.Navigate().GoToUrl(url);
+            Driver.Open(UrlProvider.Home);
             return this;
         }
     }

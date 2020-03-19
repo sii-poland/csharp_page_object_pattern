@@ -1,5 +1,6 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Tests.Models.User;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -7,28 +8,25 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
 {
     public class OrderAddressFragmentPage : BasePage
     {
-        private static By Address => By.Name("address1");
-        private static By City => By.Name("city");
-        private static By StateDropdown => By.Name("id_state");
-        private static By CountryDropdown => By.Name("id_country");
-        private static By PostCode => By.Name("postcode");
-        private static By ConfirmAddress => By.Name("confirm-addresses");
         public OrderAddressFragmentPage(IWebDriver driver) : base(driver)
         {
         }
 
-        public OrderShippingFragmentPage FillAddresses(string address, string city, string country, string state,
-            string postCode)
+        private IWebElement Address => Driver.FindElement(By.Name("address1"));
+        private IWebElement City => Driver.FindElement(By.Name("city"));
+        private IWebElement StateDropdown => Driver.FindElement(By.Name("id_state"));
+        private IWebElement PostCode => Driver.FindElement(By.Name("postcode"));
+        private IWebElement ConfirmAddress => Driver.FindElement(By.Name("confirm-addresses"));
+
+        public OrderShippingFragmentPage FillAddresses(Address address)
         {
-            driver.SendKeysWithWait(Address, address);
-            driver.SendKeysWithWait(City, city);
-            var selectCountry = new SelectElement(driver.FindElement(CountryDropdown));
-            selectCountry.SelectByText(country);
-            var selectState = new SelectElement(driver.FindElement(StateDropdown));
-            selectState.SelectByText(state);
-            driver.SendKeysWithWait(PostCode, postCode);
-            driver.ClickOnElement(ConfirmAddress);
-            return new OrderShippingFragmentPage(driver);
+            Driver.SendKeysWithWait(Address, address.Street);
+            Driver.SendKeysWithWait(City, address.City);
+            var selectState = new SelectElement(StateDropdown);
+            selectState.SelectByValue(address.State);
+            Driver.SendKeysWithWait(PostCode, address.PostalCode);
+            Driver.ClickOnElement(ConfirmAddress);
+            return new OrderShippingFragmentPage(Driver);
         }
     }
 }

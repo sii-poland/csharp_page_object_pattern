@@ -16,11 +16,11 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 
         public SecureAreaPage Logout()
         {
-            driver.ClickOnElement(LogoutButton);
+            Driver.ClickOnElement(LogoutButton);
             return this;
         }
 
-        public string GetSuccessLoginMessage() => driver.WaitAndFind(SuccessMessage).Text.Replace("\r\n", "");
-        public string GetInvalidPasswordMessage() => driver.WaitAndFind(InvalidPasswordMessage).Text.Replace("\r\n", "");
+        public string GetSuccessLoginMessage() => Driver.WaitAndFind(SuccessMessage).Text.Replace("\r\n", "");
+        public string GetInvalidPasswordMessage() => Driver.WaitAndFind(InvalidPasswordMessage).Text.Replace("\r\n", "");
     }
 }

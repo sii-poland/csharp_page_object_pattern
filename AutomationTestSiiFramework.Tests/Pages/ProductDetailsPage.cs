@@ -1,47 +1,60 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
-using AutomationTestSiiFramework.Tests.Models;
+using AutomationTestSiiFramework.Tests.Extensions;
+using AutomationTestSiiFramework.Tests.Models.Order;
+using AutomationTestSiiFramework.Tests.Pages.Products;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages
 {
     public class ProductDetailsPage : BasePage
     {
-        private static By SizeDropdown => By.CssSelector("#group_1");
-        private static By QuantityDropdown => By.CssSelector("#quantity_wanted");
-        private static By AddToCartButton => By.CssSelector(".add-to-cart");
-        private static By ProceedToCheckoutButton => By.CssSelector(".modal-body .col-md-7 div div a i");
-        public IWebElement ProductPrice => driver.FindElement(By.CssSelector(".product-price span:nth-child(1)"));
-        public IWebElement ProductName => driver.FindElement(By.CssSelector("h1"));
-        public IWebElement ProductDescription => driver.FindElement(By.CssSelector(".product-description p"));
         public ProductDetailsPage(IWebDriver driver) : base(driver)
         {
         }
 
+        private IWebElement SizeDropdownElement => Driver.FindElement(By.CssSelector("#group_1"));
+        private IWebElement QuantityDropdownElement => Driver.FindElement(By.CssSelector("#quantity_wanted"));
+        private IWebElement ProductPriceElement => Driver.FindElement(By.CssSelector("span[itemprop='price']"));
+        private IWebElement ProductNameElement => Driver.FindElement(By.CssSelector("h1"));
+        private IWebElement AddToCartButton => Driver.FindElement(By.CssSelector(".add-to-cart"));
+
+        public string Name => ProductNameElement.Text;
+        public int Quantity => int.Parse(QuantityDropdownElement.GetValue());
+        public decimal Price => ProductPriceElement.Text.ToPrice();
+
         public ProductDetailsPage SetSize(string size)
         {
-            driver.SelectByText(SizeDropdown, size);
+            Driver.SelectByText(SizeDropdownElement, size);
             return this;
         }
 
         public ProductDetailsPage SetQuantity(int quantity)
         {
-            driver.SendKeysWithWait(QuantityDropdown, quantity.ToString());
+            Driver.SendKeysWithWait(QuantityDropdownElement, quantity.ToString());
             return this;
         }
 
-        public ProductDetailsPage AddToCart()
+        public ProductPopupPage AddToCart()
         {
-            driver.ClickOnElement(AddToCartButton);
-            return this;
+            Driver.ClickOnElement(AddToCartButton);
+            return new ProductPopupPage(Driver);
         }
 
-        public Product GetProduct() => new Product(ProductName.Text, ProductPrice.Text, ProductDescription.Text);
-
-        public ShoppingCartPage ClickOnProceedToCheckout()
+        public ProductPopupPage AddToCart(OrderDetails expectedOrder)
         {
-            driver.ClickOnElement(ProceedToCheckoutButton);
-            return new ShoppingCartPage(driver);
+            expectedOrder.Add(new OrderLine
+            {
+                Product = new Product(Name, Price),
+                Quantity = Quantity,
+                TotalPrice = Price * Quantity
+            });
+            return AddToCart();
+        }
+
+        public Product ToProduct()
+        {
+            return new Product(Name, Price);
         }
     }
 }

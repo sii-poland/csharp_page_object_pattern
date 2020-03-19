@@ -13,22 +13,20 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
         [Test]
         public void LoginAuth_PutCorrectCredentials_SeeValidationAboutLoggedToTheSystem()
         {
-            var driver = Container.GetInstance<IWebDriver>();
-            var loginFormPage = new LoginFormPage(driver);
+            var loginFormPage = new LoginFormPage(Driver);
             loginFormPage
                 .Go("/login")
                 .FillLoginForm("tomsmith", "SuperSecretPassword!")
                 .Submit()
                 .GetSuccessLoginMessage()
                 .Should().Be("You logged into a secure area!×");
-            new SecureAreaPage(driver).Logout();
+            new SecureAreaPage(Driver).Logout();
         }
 
         [Test]
         public void LoginAuth_PutInvalidCredentials_SeeValidationAboutNoAccessToSite()
         {
-            var driver = Container.GetInstance<IWebDriver>();
-            var loginFormPage = new LoginFormPage(driver);
+            var loginFormPage = new LoginFormPage(Driver);
             loginFormPage
                 .Go("/login")
                 .FillLoginForm("tomsmith", "invalid_password")

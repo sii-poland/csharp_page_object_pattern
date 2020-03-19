@@ -16,21 +16,21 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 
         public LoginFormPage Go(string path)
         {
-            driver.Navigate().GoToUrl($"{TestSettings.ConfigurationJson.InternetAppUrl}{path}");
+            Driver.Navigate().GoToUrl($"{TestSettings.ConfigurationJson.InternetAppUrl}{path}");
             return this;
         }
 
         public LoginFormPage FillLoginForm(string login, string password)
         {
-            driver.SendKeysWithWait(UsernameField, login);
-            driver.SendKeysWithWait(PasswordField, password);
+            Driver.SendKeysWithWait(UsernameField, login);
+            Driver.SendKeysWithWait(PasswordField, password);
             return this;
         }
 
         public SecureAreaPage Submit()
         {
-            driver.ClickOnElement(LoginButton);
-            return new SecureAreaPage(driver);
+            Driver.ClickOnElement(LoginButton);
+            return new SecureAreaPage(Driver);
         }
     }
 }

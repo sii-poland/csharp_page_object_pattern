@@ -1,30 +1,40 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Tests.Models.User;
+using Bogus.DataSets;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
 {
     public class OrderPersonalInformationFragmentPage : BasePage
     {
-        private static By FirstName => By.Name("firstname");
-        private static By LastName => By.Name("lastname");
-        private static By Email => By.Name("email");
-        private static By SocialTitle => By.CssSelector(".radio-inline");
-        private static By Continue => By.Name("continue");
         public OrderPersonalInformationFragmentPage(IWebDriver driver) : base(driver)
         {
         }
 
-        public OrderAddressFragmentPage FillPersonalInformation(string firstName, string lastName, string email,
-            string socialTitle)
+        private IWebElement FirstName => Driver.FindElement(By.Name("firstname"));
+        private IWebElement LastName => Driver.FindElement(By.Name("lastname"));
+        private IWebElement Email => Driver.FindElement(By.Name("email"));
+        private IEnumerable<IWebElement> SocialTitle => Driver.FindElements(By.CssSelector(".radio-inline input"));
+        private IWebElement Continue => Driver.FindElement(By.Name("continue"));
+
+        public OrderAddressFragmentPage FillPersonalInformation(User user)
         {
-            driver.FindElementsGraterThenZero(SocialTitle).First(x => x.Text == socialTitle).Click();
-            driver.SendKeysWithWait(FirstName, firstName);
-            driver.SendKeysWithWait(LastName, lastName);
-            driver.SendKeysWithWait(Email, email);
-            driver.ClickOnElement(Continue);
-            return new OrderAddressFragmentPage(driver);
+            Driver.Wait().Until(x => SocialTitle.ToList().Count > 0);
+            SelectSocialTitle(user.Gender);
+            Driver.SendKeysWithWait(FirstName, user.FirstName);
+            Driver.SendKeysWithWait(LastName, user.LastName);
+            Driver.SendKeysWithWait(Email, user.Credentials.Email);
+            Driver.ClickOnElement(Continue);
+            return new OrderAddressFragmentPage(Driver);
+        }
+
+        public OrderPersonalInformationFragmentPage SelectSocialTitle(Name.Gender gender)
+        {
+            SocialTitle.First(x => x.GetValue() == ((int) gender + 1).ToString()).Click();
+            return this;
         }
     }
 }
