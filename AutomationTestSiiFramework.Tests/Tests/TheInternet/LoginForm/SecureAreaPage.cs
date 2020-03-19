@@ -11,7 +11,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
         {
         }
 
-        private IWebElement LogoutButton => Driver.FindElement(By.CssSelector(".icon-signo0ut"));
+        private IWebElement LogoutButton => Driver.FindElement(By.CssSelector(".icon-signout"));
         private IWebElement SuccessMessageElement => Driver.FindElement(By.CssSelector(".success"));
         private IWebElement InvalidPasswordMessageElement => Driver.FindElement(By.CssSelector(".error"));
 
