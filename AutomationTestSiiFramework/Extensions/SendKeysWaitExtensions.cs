@@ -13,5 +13,14 @@ namespace AutomationTestSiiFramework.Extensions
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(text);
         }
+
+        public static void SendKeysWithWait(this IWebDriver driver, IWebElement element, string text)
+        {
+            driver.WaitForClickable(element);
+            driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", element,
+                "border: 2px solid red");
+            element.Clear();
+            element.SendKeys(text);
+        }
     }
 }

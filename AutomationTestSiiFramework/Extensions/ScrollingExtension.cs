@@ -12,6 +12,13 @@ namespace AutomationTestSiiFramework.Extensions
             actions.MoveToElement(driver.FindElement(by)).Build().Perform();
         }
 
+        public static void MoveToElement(this IWebDriver driver, IWebElement element)
+        {
+            var actions = new Actions(driver);
+            driver.WaitForClickable(element);
+            actions.MoveToElement(element).Build().Perform();
+        }
+
         public static void MoveAndClick(this IWebDriver driver, By by)
         {
             driver.MoveToElement(by);

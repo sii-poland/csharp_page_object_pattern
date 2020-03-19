@@ -22,6 +22,14 @@ namespace AutomationTestSiiFramework.Extensions
             element.Click();
         }
 
+        public static void Click(this IWebDriver driver, IWebElement element)
+        {
+            driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", element,
+                "border: 2px solid red");
+            element.Click();
+        }
+
+
         public static void Click(this IWebDriver driver, By by)
         {
             driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", driver.FindElement(by),
