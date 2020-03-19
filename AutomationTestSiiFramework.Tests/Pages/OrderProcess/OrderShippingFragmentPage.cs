@@ -10,11 +10,11 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         {
         }
 
-        private static By ConFirmDeliveryOption => By.Name("confirmDeliveryOption");
+        private IWebElement ConFirmDeliveryOptionElement => Driver.FindElement(By.Name("confirmDeliveryOption"));
 
         public OrderPaymentMethodFragmentPage FillShippingMethod()
         {
-            Driver.ClickOnElement(ConFirmDeliveryOption);
+            Driver.ClickOnElement(ConFirmDeliveryOptionElement);
             return new OrderPaymentMethodFragmentPage(Driver);
         }
     }

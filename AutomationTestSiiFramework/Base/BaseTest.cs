@@ -19,7 +19,6 @@ namespace AutomationTestSiiFramework.Base
                 ? driverFactory.GetWebDriver(logger)
                 : driverFactory.GetRemoteDriver();
             Driver.Manage().Window.Maximize();
-            Driver.Open(TestSettings.ConfigurationJson.ShopAppUrl);
         }
 
         [TearDown]

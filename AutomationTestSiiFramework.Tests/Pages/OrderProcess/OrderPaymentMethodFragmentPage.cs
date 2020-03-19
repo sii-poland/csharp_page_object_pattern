@@ -13,19 +13,19 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         private IWebElement OrderWithObligationToPayButton =>
             Driver.FindElement(By.CssSelector("#payment-confirmation button"));
 
-        private IWebElement TermsOfService => Driver.FindElement(By.CssSelector("#conditions-to-approve label"));
-        private IWebElement PayByBankWire => Driver.FindElement(By.CssSelector("#payment-option-2"));
-        private IWebElement PayByCheck => Driver.FindElement(By.CssSelector("#payment-option-1"));
+        private IWebElement TermsOfServiceElement => Driver.FindElement(By.CssSelector("#conditions-to-approve label"));
+        private IWebElement PayByBankWireElement => Driver.FindElement(By.CssSelector("#payment-option-2"));
+        private IWebElement PayByCheckElement => Driver.FindElement(By.CssSelector("#payment-option-1"));
 
         public OrderPaymentMethodFragmentPage FillPaymentMethod(string method)
         {
-            Driver.Click(method == "Pay by Check" ? PayByCheck : PayByBankWire);
+            Driver.Click(method == "Pay by Check" ? PayByCheckElement : PayByBankWireElement);
             return this;
         }
 
         public OrderPaymentMethodFragmentPage AcceptTermsOfService()
         {
-            Driver.ClickOnElement(TermsOfService);
+            Driver.ClickOnElement(TermsOfServiceElement);
             return this;
         }
 

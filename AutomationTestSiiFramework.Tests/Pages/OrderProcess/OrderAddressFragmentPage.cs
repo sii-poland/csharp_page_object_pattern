@@ -12,20 +12,20 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         {
         }
 
-        private IWebElement Address => Driver.FindElement(By.Name("address1"));
-        private IWebElement City => Driver.FindElement(By.Name("city"));
-        private IWebElement StateDropdown => Driver.FindElement(By.Name("id_state"));
-        private IWebElement PostCode => Driver.FindElement(By.Name("postcode"));
-        private IWebElement ConfirmAddress => Driver.FindElement(By.Name("confirm-addresses"));
+        private IWebElement AddressElement => Driver.FindElement(By.Name("address1"));
+        private IWebElement CityElement => Driver.FindElement(By.Name("city"));
+        private IWebElement StateDropdownElement => Driver.FindElement(By.Name("id_state"));
+        private IWebElement PostCodeElement => Driver.FindElement(By.Name("postcode"));
+        private IWebElement ConfirmAddressElement => Driver.FindElement(By.Name("confirm-addresses"));
 
         public OrderShippingFragmentPage FillAddresses(Address address)
         {
-            Driver.SendKeysWithWait(Address, address.Street);
-            Driver.SendKeysWithWait(City, address.City);
-            var selectState = new SelectElement(StateDropdown);
+            Driver.SendKeysWithWait(AddressElement, address.Street);
+            Driver.SendKeysWithWait(CityElement, address.City);
+            var selectState = new SelectElement(StateDropdownElement);
             selectState.SelectByValue(address.State);
-            Driver.SendKeysWithWait(PostCode, address.PostalCode);
-            Driver.ClickOnElement(ConfirmAddress);
+            Driver.SendKeysWithWait(PostCodeElement, address.PostalCode);
+            Driver.ClickOnElement(ConfirmAddressElement);
             return new OrderShippingFragmentPage(Driver);
         }
     }

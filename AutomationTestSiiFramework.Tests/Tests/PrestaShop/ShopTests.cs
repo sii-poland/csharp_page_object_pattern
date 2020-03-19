@@ -14,6 +14,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
         public void Shop_AddToCartDefineProduct_CheckThatInDetailsIsTheSameContentAsWeExpected()
         {
             var product = new HomeShopPage(Driver)
+                .Go()
                 .ProductsGrid
                 .OpenProductByName("HUMMINGBIRD TSHIRT")
                 .ToProduct();
@@ -27,6 +28,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
         {
             var user = UserFactory.RandomUser;
             var orderConfirmationPage = new HomeShopPage(Driver)
+                .Go()
                 .ProductsGrid.OpenProductByName("HUMMINGBIRD TSHIRT")
                 .SetSize("L")
                 .SetQuantity(10).AddToCart().ProceedToCheckout().ConfirmProceedToCheckout()
