@@ -1,5 +1,4 @@
-﻿using System;
-using AutomationTestSiiFramework.Tests.Models.User;
+﻿using AutomationTestSiiFramework.Tests.Models.User;
 using Bogus;
 using Bogus.DataSets;
 using Address = AutomationTestSiiFramework.Tests.Models.User.Address;
@@ -23,7 +22,7 @@ namespace AutomationTestSiiFramework.Tests.Providers
 
         private static Address RandomAddress => new Faker<Address>()
             .RuleFor(c => c.Street, x => x.Address.StreetAddress())
-            .RuleFor(c => c.PostalCode, x => x.Address.ZipCode(String.Format("#####")))
+            .RuleFor(c => c.PostalCode, x => x.Address.ZipCode("#####"))
             .RuleFor(c => c.City, x => x.Address.City())
             .RuleFor(c => c.State, x => x.Random.Int(1, 56).ToString())
             .Generate();

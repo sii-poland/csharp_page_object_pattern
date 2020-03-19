@@ -18,4 +18,4 @@ namespace AutomationTestSiiFramework.Tests.Extensions
         {
             return text.Replace("\r\n", "");
         }
-}
+    }

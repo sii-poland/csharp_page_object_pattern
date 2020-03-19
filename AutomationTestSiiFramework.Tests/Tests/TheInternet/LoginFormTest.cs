@@ -7,7 +7,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet
 {
     [TestFixture]
     [Parallelizable(ParallelScope.Fixtures)]
-    internal class LoginFormTest : BaseTest
+    public class LoginFormTest : BaseTest
     {
         [Test]
         public void LoginAuth_PutCorrectCredentials_SeeValidationAboutLoggedToTheSystem()

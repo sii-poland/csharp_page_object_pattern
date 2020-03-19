@@ -8,6 +8,8 @@ using NUnit.Framework;
 
 namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
 {
+    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class CalculationsGenericTest : BaseTest
     {
         private static int RandomQuantity => new Random().Next(1, 5);
