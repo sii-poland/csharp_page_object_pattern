@@ -26,7 +26,7 @@ namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
         }
 
         [Test]
-        public void Shop_Generic_Add5RandomProductsInRandomQuantityToCart_CheckThatInCartIsTheSameContentAsWeExpected()
+        public void Shop_Generic_AddFiveRandomProductsInRandomQuantity_CheckThatInCartIsTheSameContentAsWeExpected()
         {
             const int quantityOfProductsToAdd = 5;
             var expectedOrder = new OrderDetails();
