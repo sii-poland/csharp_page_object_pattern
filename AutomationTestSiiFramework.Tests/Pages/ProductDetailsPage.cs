@@ -4,7 +4,6 @@ using AutomationTestSiiFramework.Tests.Extensions;
 using AutomationTestSiiFramework.Tests.Models.Order;
 using AutomationTestSiiFramework.Tests.Pages.Products;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTestSiiFramework.Tests.Pages
 {

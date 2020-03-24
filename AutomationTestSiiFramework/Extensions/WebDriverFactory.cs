@@ -23,12 +23,15 @@ namespace AutomationTestSiiFramework.Extensions
                     var chromeDriver = new ChromeDriver(TestSettings.DriverPath, WebdriverSettings.ChromeOptions());
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
-                    var firefoxDriver = new FirefoxDriver(WebdriverSettings.GetFirefoxService(), WebdriverSettings.FirefoxOptions(), TimeSpan.FromSeconds(DefaultTimeout));
+                    var firefoxDriver = new FirefoxDriver(WebdriverSettings.GetFirefoxService(),
+                        WebdriverSettings.FirefoxOptions(), TimeSpan.FromSeconds(DefaultTimeout));
                     return new WebDriverListener(firefoxDriver, logger);
                 case Browser.InternetExplorer:
-                    return new InternetExplorerDriver(TestSettings.DriverPath, WebdriverSettings.InternetExplorerOptions(), TimeSpan.FromSeconds(DefaultTimeout));
+                    return new InternetExplorerDriver(TestSettings.DriverPath,
+                        WebdriverSettings.InternetExplorerOptions(), TimeSpan.FromSeconds(DefaultTimeout));
                 case Browser.Edge:
-                    return new EdgeDriver(WebdriverSettings.GetEdgeDriverService(), WebdriverSettings.EdgeOptions(), TimeSpan.FromSeconds(DefaultTimeout));
+                    return new EdgeDriver(WebdriverSettings.GetEdgeDriverService(), WebdriverSettings.EdgeOptions(),
+                        TimeSpan.FromSeconds(DefaultTimeout));
                 default:
                     throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
                         TestSettings.ConfigurationJson.BrowserName,

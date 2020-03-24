@@ -16,7 +16,7 @@ namespace AutomationTestSiiFramework.Tests.Pages.Cart
         {
         }
 
-        private IWebElement ProceedToCheckoutButton => 
+        private IWebElement ProceedToCheckoutButton =>
             Driver.FindElement(By.CssSelector(".cart-summary .btn-primary"));
 
         private IWebElement TotalOrderCostElement =>

@@ -1,5 +1,4 @@
-﻿using System;
-using AutomationTestSiiFramework.Base;
+﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
