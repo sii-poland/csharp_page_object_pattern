@@ -15,8 +15,10 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
         private IWebElement SuccessMessageElement => Driver.FindElement(By.CssSelector(".success"));
         private IWebElement InvalidPasswordMessageElement => Driver.FindElement(By.CssSelector(".error"));
 
-        public string SuccessMessage => SuccessMessageElement.Text.RemoveNewLines();
-        public string InvalidPasswordMessage => InvalidPasswordMessageElement.Text.RemoveNewLines();
+        public string SuccessMessage => SuccessMessageElement.GetAttribute("innerText").RemoveNewLines();
+
+        public string InvalidPasswordMessage =>
+            InvalidPasswordMessageElement.GetAttribute("innerText").RemoveNewLines();
 
         public SecureAreaPage Logout()
         {

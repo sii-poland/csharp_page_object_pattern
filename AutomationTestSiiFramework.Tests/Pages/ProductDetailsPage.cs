@@ -4,6 +4,7 @@ using AutomationTestSiiFramework.Tests.Extensions;
 using AutomationTestSiiFramework.Tests.Models.Order;
 using AutomationTestSiiFramework.Tests.Pages.Products;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTestSiiFramework.Tests.Pages
 {
@@ -18,6 +19,7 @@ namespace AutomationTestSiiFramework.Tests.Pages
         private IWebElement ProductPriceElement => Driver.FindElement(By.CssSelector("span[itemprop='price']"));
         private IWebElement ProductNameElement => Driver.FindElement(By.CssSelector("h1"));
         private IWebElement AddToCartButton => Driver.FindElement(By.CssSelector(".add-to-cart"));
+        private IWebElement BasketPopupElement => Driver.FindElement(By.CssSelector("#blockcart-modal .modal-content"));
 
         public string Name => ProductNameElement.Text;
         public int Quantity => int.Parse(QuantityDropdownElement.GetValue());
@@ -38,7 +40,7 @@ namespace AutomationTestSiiFramework.Tests.Pages
         public ProductPopupPage AddToCart()
         {
             Driver.ClickOnElement(AddToCartButton);
-            return new ProductPopupPage(Driver);
+            return new ProductPopupPage(BasketPopupElement, Driver);
         }
 
         public ProductPopupPage AddToCart(OrderDetails expectedOrder)

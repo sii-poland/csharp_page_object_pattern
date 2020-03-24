@@ -1,4 +1,5 @@
-﻿using AutomationTestSiiFramework.Base;
+﻿using System;
+using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
 using OpenQA.Selenium;
 
@@ -14,9 +15,9 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
         private IWebElement PasswordField => Driver.FindElement(By.CssSelector("#password"));
         private IWebElement LoginButton => Driver.FindElement(By.CssSelector(".fa-sign-in"));
 
-        public LoginFormPage Go(string path)
+        public LoginFormPage Go()
         {
-            Driver.Navigate().GoToUrl($"{TestSettings.ConfigurationJson.InternetAppUrl}{path}");
+            Driver.Navigate().GoToUrl(UrlProvider.Login);
             return this;
         }
 

@@ -9,6 +9,6 @@
         public string InternetAppUrl { get; set; }
         public string ShopAppUrl { get; set; }
         public string ScreenshotsPath { get; set; }
-        public string DefaultTimeout { get; set; }
+        public int DefaultTimeout { get; set; }
     }
 }

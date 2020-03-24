@@ -16,8 +16,8 @@ namespace AutomationTestSiiFramework.Tests.Pages.Cart
         {
         }
 
-        private IWebElement ProceedToCheckoutButton =>
-            Driver.FindElement(By.XPath("//a[contains(text(),'Proceed to checkout')]"));
+        private IWebElement ProceedToCheckoutButton => 
+            Driver.FindElement(By.CssSelector(".cart-summary .btn-primary"));
 
         private IWebElement TotalOrderCostElement =>
             Driver.FindElement(By.CssSelector("#cart-subtotal-products .value"));
@@ -25,7 +25,6 @@ namespace AutomationTestSiiFramework.Tests.Pages.Cart
         private IEnumerable<IWebElement> CartItemsElements => Driver.FindElements(By.CssSelector(".cart-item"));
         public List<CartItemPage> CartItems => CartItemsElements.Select(c => new CartItemPage(c, Driver)).ToList();
         public decimal TotalOrderCost => TotalOrderCostElement.Text.ToPrice();
-
 
         public OrderPersonalInformationFragmentPage ConfirmProceedToCheckout()
         {

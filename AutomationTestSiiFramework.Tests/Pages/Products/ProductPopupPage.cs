@@ -7,14 +7,15 @@ namespace AutomationTestSiiFramework.Tests.Pages.Products
 {
     public class ProductPopupPage : BasePage
     {
-        public ProductPopupPage(IWebDriver driver) : base(driver)
+        private readonly IWebElement _parent;
+        public ProductPopupPage(IWebElement parent, IWebDriver driver) : base(driver)
         {
+            _parent = parent;
         }
 
-        private IWebElement ContinueShoppingButton => Driver.FindElement(By.XPath("//button[.='Continue shopping']"));
+        private IWebElement ContinueShoppingButton => _parent.FindElement(By.CssSelector(".btn-secondary"));
 
-        private IWebElement ProceedToCheckoutButton =>
-            Driver.FindElement(By.XPath("//a[contains(text(),'Proceed to checkout')]"));
+        private IWebElement ProceedToCheckoutButton => _parent.FindElement(By.CssSelector(".btn-primary"));
 
         public ShoppingCartPage ProceedToCheckout()
         {

@@ -13,21 +13,22 @@ namespace AutomationTestSiiFramework.Extensions
     {
         private static string GridUrl => TestSettings.ConfigurationJson.GridUrl;
         private static Browser Browser => TestSettings.ConfigurationJson.BrowserName.ToEnum<Browser>();
+        private static int DefaultTimeout => TestSettings.ConfigurationJson.DefaultTimeout;
 
         public IWebDriver GetWebDriver(L logger)
         {
             switch (Browser)
             {
                 case Browser.Chrome:
-                    var chromeDriver = new ChromeDriver(TestSettings.DriverPath);
+                    var chromeDriver = new ChromeDriver(TestSettings.DriverPath, WebdriverSettings.ChromeOptions());
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
-                    var firefoxDriver = new FirefoxDriver(TestSettings.DriverPath);
+                    var firefoxDriver = new FirefoxDriver(WebdriverSettings.GetFirefoxService(), WebdriverSettings.FirefoxOptions(), TimeSpan.FromSeconds(DefaultTimeout));
                     return new WebDriverListener(firefoxDriver, logger);
                 case Browser.InternetExplorer:
-                    return new InternetExplorerDriver();
+                    return new InternetExplorerDriver(TestSettings.DriverPath, WebdriverSettings.InternetExplorerOptions(), TimeSpan.FromSeconds(DefaultTimeout));
                 case Browser.Edge:
-                    return new EdgeDriver();
+                    return new EdgeDriver(WebdriverSettings.GetEdgeDriverService(), WebdriverSettings.EdgeOptions(), TimeSpan.FromSeconds(DefaultTimeout));
                 default:
                     throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
                         TestSettings.ConfigurationJson.BrowserName,
@@ -40,17 +41,13 @@ namespace AutomationTestSiiFramework.Extensions
             switch (Browser)
             {
                 case Browser.Chrome:
-                    var chromeOptions = new ChromeOptions();
-                    return new RemoteWebDriver(new Uri(GridUrl), chromeOptions);
+                    return new RemoteWebDriver(new Uri(GridUrl), WebdriverSettings.ChromeOptions());
                 case Browser.Firefox:
-                    var firefoxOptions = new FirefoxOptions();
-                    return new RemoteWebDriver(new Uri(GridUrl), firefoxOptions);
+                    return new RemoteWebDriver(new Uri(GridUrl), WebdriverSettings.FirefoxOptions());
                 case Browser.InternetExplorer:
-                    var ieOptions = new InternetExplorerOptions();
-                    return new RemoteWebDriver(new Uri(GridUrl), ieOptions);
+                    return new RemoteWebDriver(new Uri(GridUrl), WebdriverSettings.InternetExplorerOptions());
                 case Browser.Edge:
-                    var edgeOptions = new EdgeOptions();
-                    return new RemoteWebDriver(new Uri(GridUrl), edgeOptions);
+                    return new RemoteWebDriver(new Uri(GridUrl), WebdriverSettings.EdgeOptions());
                 default:
                     return null;
             }

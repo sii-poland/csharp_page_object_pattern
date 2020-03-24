@@ -20,6 +20,12 @@
 <None Update="Drivers\chromedriver.exe">
   <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 </None>
+<None Update="Drivers\geckodriver.exe">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
+<None Update="Drivers\IEDriverServer.exe">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
 </ItemGroup>
 
   <ItemGroup>

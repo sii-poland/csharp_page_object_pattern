@@ -10,7 +10,7 @@ namespace AutomationTestSiiFramework.Extensions
         public static WebDriverWait Wait(this IWebDriver driver)
         {
             return new WebDriverWait(driver,
-                TimeSpan.FromSeconds(int.Parse(TestSettings.ConfigurationJson.DefaultTimeout)));
+                TimeSpan.FromSeconds(TestSettings.ConfigurationJson.DefaultTimeout));
         }
 
         public static void WaitForClickable(this IWebDriver driver, By by)
