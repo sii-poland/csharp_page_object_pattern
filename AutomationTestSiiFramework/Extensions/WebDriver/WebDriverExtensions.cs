@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class WebDriverExtensions
     {

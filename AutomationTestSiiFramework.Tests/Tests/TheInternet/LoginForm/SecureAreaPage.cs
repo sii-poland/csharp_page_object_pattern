@@ -1,5 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using AutomationTestSiiFramework.Tests.Extensions;
 using OpenQA.Selenium;
 
@@ -11,9 +11,9 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
         {
         }
 
-        private IWebElement LogoutButton => Driver.FindElement(By.CssSelector(".icon-signout"));
-        private IWebElement SuccessMessageElement => Driver.FindElement(By.CssSelector(".success"));
-        private IWebElement InvalidPasswordMessageElement => Driver.FindElement(By.CssSelector(".error"));
+        private IWebElement LogoutButton => Driver.WaitAndFind(By.CssSelector(".icon-signout"));
+        private IWebElement SuccessMessageElement => Driver.WaitAndFind(By.CssSelector(".success"));
+        private IWebElement InvalidPasswordMessageElement => Driver.WaitAndFind(By.CssSelector(".error"));
 
         public string SuccessMessage => SuccessMessageElement.GetAttribute("innerText").RemoveNewLines();
 

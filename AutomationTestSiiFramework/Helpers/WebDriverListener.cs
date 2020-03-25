@@ -1,8 +1,9 @@
-﻿using LLibrary;
+﻿using AutomationTestSiiFramework.Extensions;
+using LLibrary;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverListener : EventFiringWebDriver
     {

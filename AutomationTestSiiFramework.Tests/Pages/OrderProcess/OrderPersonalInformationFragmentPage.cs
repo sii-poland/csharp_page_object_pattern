@@ -2,6 +2,7 @@
 using System.Linq;
 using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using AutomationTestSiiFramework.Tests.Models.User;
 using Bogus.DataSets;
 using OpenQA.Selenium;
@@ -14,18 +15,17 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         {
         }
 
-        private IWebElement FirstNameElement => Driver.FindElement(By.Name("firstname"));
-        private IWebElement LastNameElement => Driver.FindElement(By.Name("lastname"));
-        private IWebElement EmailElement => Driver.FindElement(By.Name("email"));
+        private IWebElement FirstNameElement => Driver.WaitAndFind(By.Name("firstname"));
+        private IWebElement LastNameElement => Driver.WaitAndFind(By.Name("lastname"));
+        private IWebElement EmailElement => Driver.WaitAndFind(By.Name("email"));
 
         private IEnumerable<IWebElement> SocialTitleRadioButtons =>
-            Driver.FindElements(By.CssSelector(".radio-inline input"));
+            Driver.FindElementsGraterThenZero(By.CssSelector(".radio-inline input"));
 
-        private IWebElement ContinueButton => Driver.FindElement(By.Name("continue"));
+        private IWebElement ContinueButton => Driver.WaitAndFind(By.Name("continue"));
 
         public OrderAddressFragmentPage FillPersonalInformation(User user)
         {
-            Driver.Wait().Until(x => SocialTitleRadioButtons.ToList().Count > 0);
             SelectSocialTitle(user.Gender);
             Driver.SendKeysWithWait(FirstNameElement, user.FirstName);
             Driver.SendKeysWithWait(LastNameElement, user.LastName);

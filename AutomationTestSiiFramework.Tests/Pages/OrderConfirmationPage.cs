@@ -1,4 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages
@@ -10,7 +11,7 @@ namespace AutomationTestSiiFramework.Tests.Pages
         }
 
         private IWebElement OrderSubtotalElement =>
-            Driver.FindElement(By.CssSelector("#order-items tr:nth-child(1) td:nth-child(2)"));
+            Driver.WaitAndFind(By.CssSelector("#order-items tr:nth-child(1) td:nth-child(2)"));
 
         public string OrderSubtotal => OrderSubtotalElement.Text;
     }

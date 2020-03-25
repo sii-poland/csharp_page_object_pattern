@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class ClickExtension
     {

@@ -31,14 +31,14 @@ namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
                 .Go()
                 .ProductsGrid.OpenProductByName("HUMMINGBIRD TSHIRT")
                 .SetSize("L")
-                .SetQuantity(10).AddToCart().ProceedToCheckout().ConfirmProceedToCheckout()
+                .SetQuantity(5).AddToCart().ProceedToCheckout().ConfirmProceedToCheckout()
                 .FillPersonalInformation(user)
                 .FillAddresses(user.Address)
                 .FillShippingMethod()
                 .FillPaymentMethod("Pay by Check")
                 .AcceptTermsOfService()
                 .OrderWithObligationToPay();
-            orderConfirmationPage.OrderSubtotal.Should().Be("$191.20");
+            orderConfirmationPage.OrderSubtotal.Should().Be("$95.60");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace AutomationTestSiiFramework.Extensions
+﻿namespace AutomationTestSiiFramework.Helpers
 {
     public enum Browser
     {

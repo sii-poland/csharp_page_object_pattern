@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class ScrollingExtension
     {

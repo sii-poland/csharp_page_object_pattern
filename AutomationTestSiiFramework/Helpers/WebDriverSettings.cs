@@ -4,9 +4,9 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Helpers
 {
-    public class WebdriverSettings
+    public class WebDriverSettings
     {
         public static ChromeOptions ChromeOptions()
         {
@@ -29,13 +29,18 @@ namespace AutomationTestSiiFramework.Extensions
             return new InternetExplorerOptions
             {
                 IntroduceInstabilityByIgnoringProtectedModeSettings = true,
-                IgnoreZoomLevel = true
+                IgnoreZoomLevel = true,
+                EnsureCleanSession = true
             };
         }
 
         public static EdgeOptions EdgeOptions()
         {
-            return new EdgeOptions {PageLoadStrategy = PageLoadStrategy.Normal};
+            return new EdgeOptions
+            {
+                PageLoadStrategy = PageLoadStrategy.Normal,
+                UseInPrivateBrowsing = true
+            };
         }
 
         public static EdgeDriverService GetEdgeDriverService()

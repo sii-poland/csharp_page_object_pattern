@@ -1,13 +1,12 @@
-﻿using AutomationTestSiiFramework.Extensions;
+﻿using AutomationTestSiiFramework.Helpers;
 using LLibrary;
-using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Base
 {
     [TestFixture]
-    [AllureNUnit]
+    // [AllureNUnit]
     public class BaseTest
     {
         [SetUp]

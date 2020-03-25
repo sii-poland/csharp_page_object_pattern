@@ -1,9 +1,10 @@
 ﻿using System;
+using AutomationTestSiiFramework.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class WaitExtension
     {

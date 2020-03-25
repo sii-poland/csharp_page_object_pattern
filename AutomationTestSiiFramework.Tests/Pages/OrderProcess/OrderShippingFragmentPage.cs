@@ -1,5 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
@@ -10,7 +10,7 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         {
         }
 
-        private IWebElement ConFirmDeliveryOptionElement => Driver.FindElement(By.Name("confirmDeliveryOption"));
+        private IWebElement ConFirmDeliveryOptionElement => Driver.WaitAndFind(By.Name("confirmDeliveryOption"));
 
         public OrderPaymentMethodFragmentPage FillShippingMethod()
         {

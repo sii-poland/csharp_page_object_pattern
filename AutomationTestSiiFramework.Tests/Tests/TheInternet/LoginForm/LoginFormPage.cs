@@ -1,5 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
@@ -10,9 +10,9 @@ namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
         {
         }
 
-        private IWebElement UsernameField => Driver.FindElement(By.CssSelector("#username"));
-        private IWebElement PasswordField => Driver.FindElement(By.CssSelector("#password"));
-        private IWebElement LoginButton => Driver.FindElement(By.CssSelector(".fa-sign-in"));
+        private IWebElement UsernameField => Driver.WaitAndFind(By.CssSelector("#username"));
+        private IWebElement PasswordField => Driver.WaitAndFind(By.CssSelector("#password"));
+        private IWebElement LoginButton => Driver.WaitAndFind(By.CssSelector(".fa-sign-in"));
 
         public LoginFormPage Go()
         {

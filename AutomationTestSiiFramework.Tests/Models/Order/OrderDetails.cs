@@ -24,7 +24,7 @@ namespace AutomationTestSiiFramework.Tests.Models.Order
         {
             if (IsProductAlreadyInBasket(orderLine.Product.Name))
             {
-                Items.First(item => item.Product.Name == orderLine.Product.Name).AddOne();
+                Items.First(item => item.Product.Name == orderLine.Product.Name).Add(orderLine.Quantity);
             }
             else
             {

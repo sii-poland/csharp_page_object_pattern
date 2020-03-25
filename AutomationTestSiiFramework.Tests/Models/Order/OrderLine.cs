@@ -6,9 +6,9 @@
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
 
-        public void AddOne()
+        public void Add(int quantity)
         {
-            Quantity++;
+            Quantity += quantity;
             TotalPrice = Product.Price * Quantity;
         }
     }

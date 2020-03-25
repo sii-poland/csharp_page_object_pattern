@@ -2,6 +2,7 @@
 using System.Linq;
 using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages.Products
@@ -13,7 +14,7 @@ namespace AutomationTestSiiFramework.Tests.Pages.Products
         }
 
         private IEnumerable<IWebElement> AllProductsElements =>
-            Driver.FindElements(By.CssSelector(".product-miniature"));
+            Driver.FindElementsGraterThenZero(By.CssSelector(".product-miniature"));
 
         public List<ProductMiniaturePage> AllProducts =>
             AllProductsElements.Select(c => new ProductMiniaturePage(Driver, c)).ToList();

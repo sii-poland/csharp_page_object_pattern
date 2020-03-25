@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using AutomationTestSiiFramework.Tests.Extensions;
 using AutomationTestSiiFramework.Tests.Models.Order;
 using AutomationTestSiiFramework.Tests.Pages.OrderProcess;
@@ -17,12 +17,14 @@ namespace AutomationTestSiiFramework.Tests.Pages.Cart
         }
 
         private IWebElement ProceedToCheckoutButton =>
-            Driver.FindElement(By.CssSelector(".cart-summary .btn-primary"));
+            Driver.WaitAndFind(By.CssSelector(".cart-summary .btn-primary"));
 
         private IWebElement TotalOrderCostElement =>
-            Driver.FindElement(By.CssSelector("#cart-subtotal-products .value"));
+            Driver.WaitAndFind(By.CssSelector("#cart-subtotal-products .value"));
 
-        private IEnumerable<IWebElement> CartItemsElements => Driver.FindElements(By.CssSelector(".cart-item"));
+        private IEnumerable<IWebElement> CartItemsElements =>
+            Driver.FindElementsGraterThenZero(By.CssSelector(".cart-item"));
+
         public List<CartItemPage> CartItems => CartItemsElements.Select(c => new CartItemPage(c, Driver)).ToList();
         public decimal TotalOrderCost => TotalOrderCostElement.Text.ToPrice();
 

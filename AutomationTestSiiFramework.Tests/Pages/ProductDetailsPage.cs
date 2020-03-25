@@ -1,5 +1,6 @@
 ﻿using AutomationTestSiiFramework.Base;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using AutomationTestSiiFramework.Tests.Extensions;
 using AutomationTestSiiFramework.Tests.Models.Order;
 using AutomationTestSiiFramework.Tests.Pages.Products;
@@ -13,16 +14,21 @@ namespace AutomationTestSiiFramework.Tests.Pages
         {
         }
 
-        private IWebElement SizeDropdownElement => Driver.FindElement(By.CssSelector("#group_1"));
-        private IWebElement QuantityDropdownElement => Driver.FindElement(By.CssSelector("#quantity_wanted"));
-        private IWebElement ProductPriceElement => Driver.FindElement(By.CssSelector("span[itemprop='price']"));
-        private IWebElement ProductNameElement => Driver.FindElement(By.CssSelector("h1"));
-        private IWebElement AddToCartButton => Driver.FindElement(By.CssSelector(".add-to-cart"));
-        private IWebElement BasketPopupElement => Driver.FindElement(By.CssSelector("#blockcart-modal .modal-content"));
+        private IWebElement SizeDropdownElement => Driver.WaitAndFind(By.CssSelector("#group_1"));
+        private IWebElement QuantityDropdownElement => Driver.WaitAndFind(By.CssSelector("#quantity_wanted"));
+        private IWebElement ProductPriceElement => Driver.WaitAndFind(By.CssSelector("span[itemprop='price']"));
+        private IWebElement ProductNameElement => Driver.WaitAndFind(By.CssSelector("h1"));
+        private IWebElement BasketPopupElement => Driver.WaitAndFind(By.CssSelector("#blockcart-modal .modal-content"));
+        private static By AddToCartButton => By.CssSelector(".add-to-cart");
 
         public string Name => ProductNameElement.Text;
         public int Quantity => int.Parse(QuantityDropdownElement.GetValue());
         public decimal Price => ProductPriceElement.Text.ToPrice();
+
+        private void Unfocus()
+        {
+            Driver.ClickOnElement(ProductNameElement);
+        }
 
         public ProductDetailsPage SetSize(string size)
         {
@@ -33,6 +39,7 @@ namespace AutomationTestSiiFramework.Tests.Pages
         public ProductDetailsPage SetQuantity(int quantity)
         {
             Driver.SendKeysWithWait(QuantityDropdownElement, quantity.ToString());
+            Unfocus();
             return this;
         }
 

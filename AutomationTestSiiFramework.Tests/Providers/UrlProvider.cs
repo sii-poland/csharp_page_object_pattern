@@ -1,5 +1,5 @@
 ﻿using System;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Helpers;
 
 namespace AutomationTestSiiFramework.Tests.Providers
 {

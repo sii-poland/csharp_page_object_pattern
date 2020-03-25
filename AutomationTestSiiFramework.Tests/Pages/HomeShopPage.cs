@@ -1,5 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using AutomationTestSiiFramework.Tests.Pages.Products;
 using AutomationTestSiiFramework.Tests.Providers;
 using OpenQA.Selenium;

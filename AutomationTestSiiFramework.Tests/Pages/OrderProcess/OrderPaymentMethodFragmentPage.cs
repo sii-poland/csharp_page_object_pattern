@@ -1,5 +1,5 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
@@ -11,11 +11,15 @@ namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
         }
 
         private IWebElement OrderWithObligationToPayButton =>
-            Driver.FindElement(By.CssSelector("#payment-confirmation button"));
+            Driver.WaitAndFind(By.CssSelector("#payment-confirmation button"));
 
-        private IWebElement TermsOfServiceElement => Driver.FindElement(By.CssSelector("#conditions-to-approve label"));
-        private IWebElement PayByBankWireElement => Driver.FindElement(By.CssSelector("#payment-option-2"));
-        private IWebElement PayByCheckElement => Driver.FindElement(By.CssSelector("#payment-option-1"));
+        private IWebElement TermsOfServiceElement => Driver.WaitAndFind(By.CssSelector("#conditions-to-approve label"));
+
+        private IWebElement PayByBankWireElement =>
+            Driver.WaitAndFind(By.CssSelector("#payment-option-2-container .custom-radio"));
+
+        private IWebElement PayByCheckElement =>
+            Driver.WaitAndFind(By.CssSelector("#payment-option-1-container .custom-radio"));
 
         public OrderPaymentMethodFragmentPage FillPaymentMethod(string method)
         {
