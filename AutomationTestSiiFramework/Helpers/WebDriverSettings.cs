@@ -8,7 +8,7 @@ namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverSettings
     {
-        public static ChromeOptions ChromeOptions()
+        public static ChromeOptions ChromeOptions(bool headless)
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddAdditionalCapability("useAutomationExtension", false);
@@ -16,6 +16,10 @@ namespace AutomationTestSiiFramework.Helpers
             chromeOptions.AddArgument("--disable-save-password-bubble");
             chromeOptions.AddArgument("ignore-certificate-errors");
             chromeOptions.AddArgument("start-maximized");
+            if (headless)
+            {
+                chromeOptions.AddArgument("--headless");
+            }
             return chromeOptions;
         }
 

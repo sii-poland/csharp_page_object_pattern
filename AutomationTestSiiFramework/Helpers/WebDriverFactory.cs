@@ -13,6 +13,7 @@ namespace AutomationTestSiiFramework.Helpers
     public class WebDriverFactory
     {
         private static string GridUrl => TestSettings.ConfigurationJson.GridUrl;
+        private static bool Headless => TestSettings.ConfigurationJson.Headless;
         private static Browser Browser => TestSettings.ConfigurationJson.BrowserName.ToEnum<Browser>();
 
         public IWebDriver GetWebDriver(L logger)
@@ -20,7 +21,8 @@ namespace AutomationTestSiiFramework.Helpers
             switch (Browser)
             {
                 case Browser.Chrome:
-                    var chromeDriver = new ChromeDriver(TestSettings.DriverPath, WebDriverSettings.ChromeOptions());
+                    var chromeDriver =
+                        new ChromeDriver(TestSettings.DriverPath, WebDriverSettings.ChromeOptions(Headless));
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
                     var firefoxDriver = new FirefoxDriver(WebDriverSettings.GetFirefoxService(),
@@ -46,7 +48,7 @@ namespace AutomationTestSiiFramework.Helpers
             switch (Browser)
             {
                 case Browser.Chrome:
-                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.ChromeOptions());
+                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.ChromeOptions(Headless));
                 case Browser.Firefox:
                     return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.FirefoxOptions());
                 case Browser.InternetExplorer:
@@ -54,7 +56,9 @@ namespace AutomationTestSiiFramework.Helpers
                 case Browser.Edge:
                     return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.EdgeOptions());
                 default:
-                    return null;
+                    throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
+                        TestSettings.ConfigurationJson.BrowserName,
+                        null);
             }
         }
     }
