@@ -13,8 +13,9 @@ namespace AutomationTestSiiFramework.Base
         [SetUp]
         public void Setup()
         {
+            var driverConfig = Configuration.WebDriver;
             var logger = new L();
-            Driver = new WebDriverFactory().GetWebDriver(logger);
+            Driver = new WebDriverFactory().GetWebDriver(driverConfig, logger);
             Driver.Manage().Window.Maximize();
         }
 
