@@ -20,6 +20,7 @@ namespace AutomationTestSiiFramework.Helpers
             {
                 chromeOptions.AddArgument("--headless");
             }
+
             return chromeOptions;
         }
 

@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="29.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutomationTestSiiFramework\AutomationTestSiiFramework.csproj" />
+  </ItemGroup>
+
 </Project>
