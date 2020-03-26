@@ -16,6 +16,7 @@ namespace AutomationTestSiiFramework.Helpers
             chromeOptions.AddArgument("--disable-save-password-bubble");
             chromeOptions.AddArgument("ignore-certificate-errors");
             chromeOptions.AddArgument("start-maximized");
+            chromeOptions.AddArgument($"--lang={Configuration.WebDriver.BrowserLanguage}");
             if (Configuration.WebDriver.Headless)
             {
                 chromeOptions.AddArgument("--headless");
