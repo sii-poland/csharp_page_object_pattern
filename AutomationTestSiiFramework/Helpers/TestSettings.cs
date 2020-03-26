@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using AutomationTestSiiFramework.Model;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Helpers
 {
     public class TestSettings
     {

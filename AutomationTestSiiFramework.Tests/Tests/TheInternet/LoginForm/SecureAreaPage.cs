@@ -1,26 +1,29 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
+using AutomationTestSiiFramework.Tests.Extensions;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 {
     public class SecureAreaPage : BasePage
     {
-        private static By LogoutButton => By.CssSelector(".icon-signout");
-        private static By SuccessMessage => By.CssSelector(".success");
-        private static By InvalidPasswordMessage => By.CssSelector(".error");
-
         public SecureAreaPage(IWebDriver driver) : base(driver)
         {
         }
 
+        private IWebElement LogoutButton => Driver.WaitAndFind(By.CssSelector(".icon-signout"));
+        private IWebElement SuccessMessageElement => Driver.WaitAndFind(By.CssSelector(".success"));
+        private IWebElement InvalidPasswordMessageElement => Driver.WaitAndFind(By.CssSelector(".error"));
+
+        public string SuccessMessage => SuccessMessageElement.GetAttribute("innerText").RemoveNewLines();
+
+        public string InvalidPasswordMessage =>
+            InvalidPasswordMessageElement.GetAttribute("innerText").RemoveNewLines();
+
         public SecureAreaPage Logout()
         {
-            driver.ClickOnElement(LogoutButton);
+            Driver.ClickOnElement(LogoutButton);
             return this;
         }
-
-        public string GetSuccessLoginMessage() => driver.WaitAndFind(SuccessMessage).Text.Replace("\r\n", "");
-        public string GetInvalidPasswordMessage() => driver.WaitAndFind(InvalidPasswordMessage).Text.Replace("\r\n", "");
     }
 }

@@ -20,25 +20,33 @@
 <None Update="Drivers\chromedriver.exe">
   <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 </None>
+<None Update="Drivers\geckodriver.exe">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
+<None Update="Drivers\IEDriverServer.exe">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
 </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Allure.Commons" Version="2.4.2.4" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
-    <PackageReference Include="FluentAssertions" Version="5.10.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.2" />
     <PackageReference Include="L" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Noksa.WebDriver.ScreenshotsExtensions" Version="0.1.5.3" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit.Allure" Version="1.0.6.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.0">
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="79.0.3945.3600" />
-    <PackageReference Include="SimpleInjector" Version="4.9.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="80.0.3987.10600" />
+    <PackageReference Include="SimpleInjector" Version="4.9.1" />
   </ItemGroup>
 
 </Project>

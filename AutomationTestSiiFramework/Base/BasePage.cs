@@ -2,13 +2,13 @@
 
 namespace AutomationTestSiiFramework.Base
 {
-    public class BasePage
+    public abstract class BasePage
     {
-        protected IWebDriver driver;
+        protected readonly IWebDriver Driver;
 
         protected BasePage(IWebDriver driver)
         {
-            this.driver = driver;
+            Driver = driver;
         }
     }
 }
