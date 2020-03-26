@@ -2,7 +2,7 @@
 using System.Linq;
 using OpenQA.Selenium;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class FindElementsExtension
     {

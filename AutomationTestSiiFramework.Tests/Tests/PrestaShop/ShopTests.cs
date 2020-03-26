@@ -1,9 +1,8 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
 using AutomationTestSiiFramework.Tests.Pages;
+using AutomationTestSiiFramework.Tests.Providers;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
 {
@@ -14,31 +13,32 @@ namespace AutomationTestSiiFramework.Tests.Tests.PrestaShop
         [Test]
         public void Shop_AddToCartDefineProduct_CheckThatInDetailsIsTheSameContentAsWeExpected()
         {
-            var driver = Container.GetInstance<IWebDriver>();
-            var homeShopPage = new HomeShopPage(driver);
-            var product = homeShopPage.Go(TestSettings.ConfigurationJson.ShopAppUrl).ChooseProductByName("HUMMINGBIRD TSHIRT")
-                .GetProduct();
-            product.PriceOnlyValue.Should().Be(19.12m);
-            product.Price.Should().Be("$19.12");
+            var product = new HomeShopPage(Driver)
+                .Go()
+                .ProductsGrid
+                .OpenProductByName("HUMMINGBIRD TSHIRT")
+                .ToProduct();
+            product.Price.Should().Be(19.12m);
             product.Name.Should().Be("HUMMINGBIRD TSHIRT");
         }
+
 
         [Test]
         public void Shop_AddToCartProductAndFillAWholeForm_CheckValidationAfterAddedOrder()
         {
-            var driver = Container.GetInstance<IWebDriver>();
-            var homeShopPage = new HomeShopPage(driver);
-            var orderConfirmationPage = homeShopPage.Go(TestSettings.ConfigurationJson.ShopAppUrl)
-                .ChooseProductByName("HUMMINGBIRD TSHIRT")
+            var user = UserFactory.RandomUser;
+            var orderConfirmationPage = new HomeShopPage(Driver)
+                .Go()
+                .ProductsGrid.OpenProductByName("HUMMINGBIRD TSHIRT")
                 .SetSize("L")
-                .SetQuantity(10).AddToCart().ClickOnProceedToCheckout().ConfirmProceedToCheckout()
-                .FillPersonalInformation("name", "lastName", "kontakt+qa@testingplus.me", "Mrs.")
-                .FillAddresses("fake address", "New York", "United States", "New York", "10100")
+                .SetQuantity(5).AddToCart().ProceedToCheckout().ConfirmProceedToCheckout()
+                .FillPersonalInformation(user)
+                .FillAddresses(user.Address)
                 .FillShippingMethod()
                 .FillPaymentMethod("Pay by Check")
                 .AcceptTermsOfService()
                 .OrderWithObligationToPay();
-            orderConfirmationPage.OrderSubtotal.Should().Be("$191.20");
+            orderConfirmationPage.OrderSubtotal.Should().Be("$95.60");
         }
     }
 }

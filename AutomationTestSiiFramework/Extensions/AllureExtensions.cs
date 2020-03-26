@@ -3,8 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Allure.Commons;
+using AutomationTestSiiFramework.Helpers;
 using LLibrary;
 using OpenQA.Selenium;
+using WDSE;
+using WDSE.Decorators;
+using WDSE.ScreenshotMaker;
 
 namespace AutomationTestSiiFramework.Extensions
 {
@@ -26,8 +30,8 @@ namespace AutomationTestSiiFramework.Extensions
                 Directory.CreateDirectory(path);
                 var pathToFile =
                     $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
-                var screenshot = ((ITakesScreenshot) driver).GetScreenshot();
-                screenshot.SaveAsFile(pathToFile, ScreenshotImageFormat.Png);
+                var bytesArr = driver.TakeScreenshot(new VerticalCombineDecorator(new ScreenshotMaker()));
+                bytesArr.ToMagickImage().Write(pathToFile);
                 AllureLifecycle.Instance.AddAttachment(pathToFile, title);
             }
             catch (Exception ex)

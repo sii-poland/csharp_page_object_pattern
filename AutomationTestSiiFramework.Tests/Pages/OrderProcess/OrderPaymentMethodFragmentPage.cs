@@ -1,35 +1,42 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Pages.OrderProcess
 {
     public class OrderPaymentMethodFragmentPage : BasePage
     {
-        private static By OrderWithObligationToPayButton => By.CssSelector("#payment-confirmation button");
-        private static By TermsOfService => By.CssSelector("#conditions-to-approve label");
-        private static By PayByBankWire => By.CssSelector("#payment-option-2");
-        private static By PayByCheck => By.CssSelector("#payment-option-1");
         public OrderPaymentMethodFragmentPage(IWebDriver driver) : base(driver)
         {
         }
 
+        private IWebElement OrderWithObligationToPayButton =>
+            Driver.WaitAndFind(By.CssSelector("#payment-confirmation button"));
+
+        private IWebElement TermsOfServiceElement => Driver.WaitAndFind(By.CssSelector("#conditions-to-approve label"));
+
+        private IWebElement PayByBankWireElement =>
+            Driver.WaitAndFind(By.CssSelector("#payment-option-2-container .custom-radio"));
+
+        private IWebElement PayByCheckElement =>
+            Driver.WaitAndFind(By.CssSelector("#payment-option-1-container .custom-radio"));
+
         public OrderPaymentMethodFragmentPage FillPaymentMethod(string method)
         {
-            driver.Click(method == "Pay by Check" ? PayByCheck : PayByBankWire);
+            Driver.Click(method == "Pay by Check" ? PayByCheckElement : PayByBankWireElement);
             return this;
         }
 
         public OrderPaymentMethodFragmentPage AcceptTermsOfService()
         {
-            driver.Click(TermsOfService);
+            Driver.ClickOnElement(TermsOfServiceElement);
             return this;
         }
 
         public OrderConfirmationPage OrderWithObligationToPay()
         {
-            driver.ClickOnElement(OrderWithObligationToPayButton);
-            return new OrderConfirmationPage(driver);
+            Driver.ClickOnElement(OrderWithObligationToPayButton);
+            return new OrderConfirmationPage(Driver);
         }
     }
 }

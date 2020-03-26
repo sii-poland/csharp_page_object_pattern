@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Extensions.WebDriver
 {
     public static class ClickExtension
     {
@@ -21,6 +21,14 @@ namespace AutomationTestSiiFramework.Extensions
                 "border: 2px solid red");
             element.Click();
         }
+
+        public static void Click(this IWebDriver driver, IWebElement element)
+        {
+            driver.ExecuteJavaScript("arguments[0].setAttribute('style', arguments[1]);", element,
+                "border: 2px solid red");
+            element.Click();
+        }
+
 
         public static void Click(this IWebDriver driver, By by)
         {

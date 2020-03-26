@@ -1,36 +1,36 @@
 ﻿using AutomationTestSiiFramework.Base;
-using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Extensions.WebDriver;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Tests.Tests.TheInternet.LoginForm
 {
     public class LoginFormPage : BasePage
     {
-        private static By UsernameField => By.CssSelector("#username");
-        private static By PasswordField => By.CssSelector("#password");
-        private static By LoginButton => By.CssSelector(".fa-sign-in");
-
         public LoginFormPage(IWebDriver driver) : base(driver)
         {
         }
 
-        public LoginFormPage Go(string path)
+        private IWebElement UsernameField => Driver.WaitAndFind(By.CssSelector("#username"));
+        private IWebElement PasswordField => Driver.WaitAndFind(By.CssSelector("#password"));
+        private IWebElement LoginButton => Driver.WaitAndFind(By.CssSelector(".fa-sign-in"));
+
+        public LoginFormPage Go()
         {
-            driver.Navigate().GoToUrl($"{TestSettings.ConfigurationJson.InternetAppUrl}{path}");
+            Driver.Navigate().GoToUrl(UrlProvider.Login);
             return this;
         }
 
         public LoginFormPage FillLoginForm(string login, string password)
         {
-            driver.SendKeysWithWait(UsernameField, login);
-            driver.SendKeysWithWait(PasswordField, password);
+            Driver.SendKeysWithWait(UsernameField, login);
+            Driver.SendKeysWithWait(PasswordField, password);
             return this;
         }
 
         public SecureAreaPage Submit()
         {
-            driver.ClickOnElement(LoginButton);
-            return new SecureAreaPage(driver);
+            Driver.ClickOnElement(LoginButton);
+            return new SecureAreaPage(Driver);
         }
     }
 }

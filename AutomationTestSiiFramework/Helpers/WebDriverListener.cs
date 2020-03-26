@@ -1,18 +1,19 @@
-﻿using LLibrary;
+﻿using AutomationTestSiiFramework.Extensions;
+using LLibrary;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
 
-namespace AutomationTestSiiFramework.Extensions
+namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverListener : EventFiringWebDriver
     {
-        private readonly IWebDriver driver;
-        private readonly L logger;
+        private readonly IWebDriver _driver;
+        private readonly L _logger;
 
         public WebDriverListener(IWebDriver parentDriver, L logger) : base(parentDriver)
         {
-            driver = parentDriver;
-            this.logger = logger;
+            _driver = parentDriver;
+            _logger = logger;
             Navigating += WebDriverListener_Navigating;
             Navigated += WebDriverListener_Navigated;
             FindingElement += WebDriverListener_FindingElement;
@@ -59,12 +60,12 @@ namespace AutomationTestSiiFramework.Extensions
 
         private void LogMessage(string text)
         {
-            logger.Info(text);
+            _logger.Info(text);
         }
 
         private void LogScreenshot(string text)
         {
-            driver.SaveScreenshot(text, logger);
+            _driver.SaveScreenshot(text, _logger);
         }
     }
 }
