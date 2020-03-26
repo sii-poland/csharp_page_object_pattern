@@ -1,5 +1,6 @@
 ﻿using System;
 using AutomationTestSiiFramework.Extensions;
+using AutomationTestSiiFramework.Models;
 using LLibrary;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,24 +13,28 @@ namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverFactory
     {
-        private static string GridUrl => TestSettings.ConfigurationJson.GridUrl;
-        private static bool Headless => TestSettings.ConfigurationJson.Headless;
-        private static Browser Browser => TestSettings.ConfigurationJson.BrowserName.ToEnum<Browser>();
+        private static Browser Browser => Configuration.WebDriver.BrowserName.ToEnum<Browser>();
+        private static BrowserType BrowserType => Configuration.WebDriver.BrowserType.ToEnum<BrowserType>();
 
         public IWebDriver GetWebDriver(L logger)
+        {
+            return BrowserType == BrowserType.Local ? GetLocalWebDriver(logger) : GetRemoteDriver();
+        }
+
+        private IWebDriver GetLocalWebDriver(L logger)
         {
             switch (Browser)
             {
                 case Browser.Chrome:
                     var chromeDriver =
-                        new ChromeDriver(TestSettings.DriverPath, WebDriverSettings.ChromeOptions(Headless));
+                        new ChromeDriver(Configuration.DriverPath, WebDriverSettings.ChromeOptions());
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
                     var firefoxDriver = new FirefoxDriver(WebDriverSettings.GetFirefoxService(),
                         WebDriverSettings.FirefoxOptions());
                     return new WebDriverListener(firefoxDriver, logger);
                 case Browser.InternetExplorer:
-                    var ieDriver = new InternetExplorerDriver(TestSettings.DriverPath,
+                    var ieDriver = new InternetExplorerDriver(Configuration.DriverPath,
                         WebDriverSettings.InternetExplorerOptions());
                     return new WebDriverListener(ieDriver, logger);
                 case Browser.Edge:
@@ -37,27 +42,28 @@ namespace AutomationTestSiiFramework.Helpers
                         WebDriverSettings.EdgeOptions());
                     return new WebDriverListener(edgeDriver, logger);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
-                        TestSettings.ConfigurationJson.BrowserName,
+                    throw new ArgumentOutOfRangeException(nameof(Configuration.WebDriver.BrowserName),
+                        Configuration.WebDriver.BrowserName,
                         null);
             }
         }
 
-        public RemoteWebDriver GetRemoteDriver()
+        private RemoteWebDriver GetRemoteDriver()
         {
+            var gridUrl = Configuration.WebDriver.GridUrl;
             switch (Browser)
             {
                 case Browser.Chrome:
-                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.ChromeOptions(Headless));
+                    return new RemoteWebDriver(new Uri(gridUrl), WebDriverSettings.ChromeOptions());
                 case Browser.Firefox:
-                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.FirefoxOptions());
+                    return new RemoteWebDriver(new Uri(gridUrl), WebDriverSettings.FirefoxOptions());
                 case Browser.InternetExplorer:
-                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.InternetExplorerOptions());
+                    return new RemoteWebDriver(new Uri(gridUrl), WebDriverSettings.InternetExplorerOptions());
                 case Browser.Edge:
-                    return new RemoteWebDriver(new Uri(GridUrl), WebDriverSettings.EdgeOptions());
+                    return new RemoteWebDriver(new Uri(gridUrl), WebDriverSettings.EdgeOptions());
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(TestSettings.ConfigurationJson.BrowserName),
-                        TestSettings.ConfigurationJson.BrowserName,
+                    throw new ArgumentOutOfRangeException(nameof(Configuration.WebDriver.BrowserName),
+                        Configuration.WebDriver.BrowserName,
                         null);
             }
         }

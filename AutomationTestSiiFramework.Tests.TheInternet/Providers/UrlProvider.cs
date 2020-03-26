@@ -5,7 +5,7 @@ namespace AutomationTestSiiFramework.Tests.TheInternet.Providers
 {
     public class UrlProvider
     {
-        private static Uri BaseUrl => new Uri(TestSettings.ConfigurationJson.InternetAppUrl);
+        private static Uri BaseUrl => new Uri(Configuration.Environment.ApplicationUrl);
         public static Uri Login => new Uri(BaseUrl, "login");
     }
 }

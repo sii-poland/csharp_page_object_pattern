@@ -1,23 +1,19 @@
 ﻿using AutomationTestSiiFramework.Helpers;
 using LLibrary;
-using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace AutomationTestSiiFramework.Base
 {
     [TestFixture]
-    [AllureNUnit]
+    // [AllureNUnit]
     public class BaseTest
     {
         [SetUp]
         public void Setup()
         {
-            var driverFactory = new WebDriverFactory();
             var logger = new L();
-            Driver = TestSettings.ConfigurationJson.BrowserType == "local"
-                ? driverFactory.GetWebDriver(logger)
-                : driverFactory.GetRemoteDriver();
+            Driver = new WebDriverFactory().GetWebDriver(logger);
             Driver.Manage().Window.Maximize();
         }
 

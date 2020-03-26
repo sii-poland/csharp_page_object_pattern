@@ -1,14 +1,11 @@
-﻿namespace AutomationTestSiiFramework.Model
+﻿namespace AutomationTestSiiFramework.Models
 {
-    public class JsonConfiguration
+    public class WebDriverConfiguration
     {
-        public string ApplicationName { get; set; }
         public string BrowserName { get; set; }
         public string BrowserType { get; set; }
         public bool Headless { get; set; }
         public string GridUrl { get; set; }
-        public string InternetAppUrl { get; set; }
-        public string ShopAppUrl { get; set; }
         public string ScreenshotsPath { get; set; }
         public int DefaultTimeout { get; set; }
     }

@@ -8,7 +8,7 @@ namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverSettings
     {
-        public static ChromeOptions ChromeOptions(bool headless)
+        public static ChromeOptions ChromeOptions()
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddAdditionalCapability("useAutomationExtension", false);
@@ -16,7 +16,7 @@ namespace AutomationTestSiiFramework.Helpers
             chromeOptions.AddArgument("--disable-save-password-bubble");
             chromeOptions.AddArgument("ignore-certificate-errors");
             chromeOptions.AddArgument("start-maximized");
-            if (headless)
+            if (Configuration.WebDriver.Headless)
             {
                 chromeOptions.AddArgument("--headless");
             }
@@ -59,7 +59,7 @@ namespace AutomationTestSiiFramework.Helpers
 
         public static FirefoxDriverService GetFirefoxService()
         {
-            var geckoService = FirefoxDriverService.CreateDefaultService(TestSettings.DriverPath);
+            var geckoService = FirefoxDriverService.CreateDefaultService(Configuration.DriverPath);
             geckoService.Host = "::1";
             return geckoService;
         }

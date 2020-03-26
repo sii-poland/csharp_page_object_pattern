@@ -26,7 +26,7 @@ namespace AutomationTestSiiFramework.Extensions
             try
             {
                 title = CleanFileName(title);
-                path = $"{TestSettings.ConfigurationJson.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
+                path = $"{Configuration.WebDriver.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
                 Directory.CreateDirectory(path);
                 var pathToFile =
                     $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
