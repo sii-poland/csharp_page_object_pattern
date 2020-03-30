@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AutomationTestSiiFramework.Models;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -8,24 +9,36 @@ namespace AutomationTestSiiFramework.Helpers
 {
     public class WebDriverSettings
     {
-        public static ChromeOptions ChromeOptions(bool headless)
+        public static ChromeOptions ChromeOptions(WebDriverConfiguration config)
         {
-            var chromeOptions = new ChromeOptions();
-            chromeOptions.AddAdditionalCapability("useAutomationExtension", false);
-            chromeOptions.AddExcludedArgument("enable-automation");
-            chromeOptions.AddArgument("--disable-save-password-bubble");
-            chromeOptions.AddArgument("ignore-certificate-errors");
-            chromeOptions.AddArgument("start-maximized");
-            if (headless)
+            var options = new ChromeOptions();
+            options.AddAdditionalCapability("useAutomationExtension", false);
+            options.AddExcludedArgument("enable-automation");
+            options.AddArgument("--disable-save-password-bubble");
+            options.AddArgument("ignore-certificate-errors");
+            options.AddArgument("start-maximized");
+            options.AddArgument($"--lang={config.BrowserLanguage}");
+            options.AddUserProfilePreference("intl.accept_languages", config.BrowserLanguage);
+
+            if (config.Headless)
             {
-                chromeOptions.AddArgument("--headless");
+                options.AddArgument("--headless");
             }
-            return chromeOptions;
+
+            return options;
         }
 
-        public static FirefoxOptions FirefoxOptions()
+        public static FirefoxOptions FirefoxOptions(WebDriverConfiguration config)
         {
-            return new FirefoxOptions {AcceptInsecureCertificates = true};
+            var options = new FirefoxOptions {AcceptInsecureCertificates = true};
+            options.SetPreference("intl.accept_languages", config.BrowserLanguage);
+
+            if (config.Headless)
+            {
+                options.AddArgument("-headless");
+            }
+
+            return options;
         }
 
         public static InternetExplorerOptions InternetExplorerOptions()
@@ -58,7 +71,7 @@ namespace AutomationTestSiiFramework.Helpers
 
         public static FirefoxDriverService GetFirefoxService()
         {
-            var geckoService = FirefoxDriverService.CreateDefaultService(TestSettings.DriverPath);
+            var geckoService = FirefoxDriverService.CreateDefaultService(Configuration.DriverPath);
             geckoService.Host = "::1";
             return geckoService;
         }

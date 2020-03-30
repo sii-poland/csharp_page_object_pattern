@@ -13,11 +13,9 @@ namespace AutomationTestSiiFramework.Base
         [SetUp]
         public void Setup()
         {
-            var driverFactory = new WebDriverFactory();
+            var driverConfig = Configuration.WebDriver;
             var logger = new L();
-            Driver = TestSettings.ConfigurationJson.BrowserType == "local"
-                ? driverFactory.GetWebDriver(logger)
-                : driverFactory.GetRemoteDriver();
+            Driver = new WebDriverFactory().GetWebDriver(driverConfig, logger);
             Driver.Manage().Window.Maximize();
         }
 
