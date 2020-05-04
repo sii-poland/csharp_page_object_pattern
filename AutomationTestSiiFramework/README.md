@@ -1,6 +1,6 @@
 ﻿## Selenium Test Framework  
-This project provides selenium test framework. It is written in C# and it follows best practices as well as most recent 
-and top rated tools. It is designed for web test automation, to implement and run robust functional tests.  
+This project provides a library for Web UI automation tests based on Selenium WebDriver. It is written in C# and it follows best practices as well as most recent 
+and top-rated tools. It is designed for web test automation, to implement and run robust functional tests.  
 Since everything is set up, the tests can be added and run straight away.
  
 ## Framework Features:
@@ -21,7 +21,7 @@ dotnet test (in your console) you need to have .NET Core on your computer
 
 ## Use this project 
 
-For now, you can pull and take this project AutomationTestsSiiFramework. Put it to your repository and start using it. In the feature we will ad NuGet package and it will be easier to use in daily life.
+For now, you can pull and take this project AutomationTestsSiiFramework. Put it to your repository and start using it. In the feature we will add NuGet package and documentation. It will be easier to use in daily life.
 
 
 ## appsettings.json - possible to change default values
