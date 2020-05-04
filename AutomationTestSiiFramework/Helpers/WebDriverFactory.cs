@@ -52,7 +52,7 @@ namespace AutomationTestSiiFramework.Helpers
             {
                 case Browser.Chrome:
                     return new RemoteWebDriver(new Uri(driverConfig.GridUrl),
-                        WebDriverSettings.ChromeOptions(driverConfig));
+                        WebDriverSettings.ChromeOptionsForRemote(driverConfig));
                 case Browser.Firefox:
                     return new RemoteWebDriver(new Uri(driverConfig.GridUrl),
                         WebDriverSettings.FirefoxOptions(driverConfig));

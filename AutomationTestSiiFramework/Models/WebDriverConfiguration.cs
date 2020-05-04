@@ -9,5 +9,6 @@
         public string ScreenshotsPath { get; set; }
         public int DefaultTimeout { get; set; }
         public string BrowserLanguage { get; set; }
+        public bool Video { get; set; }
     }
 }

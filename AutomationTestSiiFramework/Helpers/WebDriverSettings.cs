@@ -75,5 +75,17 @@ namespace AutomationTestSiiFramework.Helpers
             geckoService.Host = "::1";
             return geckoService;
         }
+
+        public static ChromeOptions ChromeOptionsForRemote(WebDriverConfiguration config)
+        {
+            var options = new ChromeOptions();
+            options.AddAdditionalCapability("enableVNC",true,true);
+            if (config.Video)
+            {
+                options.AddAdditionalCapability ("enableVideo", true, true);
+            }
+
+            return options;
+        }
     }
 }
