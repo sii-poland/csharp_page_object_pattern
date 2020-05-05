@@ -7,6 +7,8 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace AutomationTestSiiFramework.Helpers
 {
@@ -24,20 +26,20 @@ namespace AutomationTestSiiFramework.Helpers
             switch (driverConfig.BrowserName)
             {
                 case Browser.Chrome:
-                    var chromeDriver = new ChromeDriver(Configuration.DriverPath,
-                        WebDriverSettings.ChromeOptions(driverConfig));
+                    new DriverManager ().SetUpDriver (new ChromeConfig ());
+                    var chromeDriver = new ChromeDriver(WebDriverSettings.ChromeOptions(driverConfig));
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
-                    var firefoxDriver = new FirefoxDriver(WebDriverSettings.GetFirefoxService(),
-                        WebDriverSettings.FirefoxOptions(driverConfig));
+                    new DriverManager ().SetUpDriver (new FirefoxConfig());
+                    var firefoxDriver = new FirefoxDriver(WebDriverSettings.FirefoxOptions(driverConfig));
                     return new WebDriverListener(firefoxDriver, logger);
                 case Browser.InternetExplorer:
-                    var ieDriver = new InternetExplorerDriver(Configuration.DriverPath,
-                        WebDriverSettings.InternetExplorerOptions());
+                    new DriverManager ().SetUpDriver (new InternetExplorerConfig());
+                    var ieDriver = new InternetExplorerDriver(WebDriverSettings.InternetExplorerOptions());
                     return new WebDriverListener(ieDriver, logger);
                 case Browser.Edge:
-                    var edgeDriver = new EdgeDriver(WebDriverSettings.GetEdgeDriverService(),
-                        WebDriverSettings.EdgeOptions());
+                    new DriverManager ().SetUpDriver (new EdgeConfig());
+                    var edgeDriver = new EdgeDriver(WebDriverSettings.EdgeOptions());
                     return new WebDriverListener(edgeDriver, logger);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Configuration.WebDriver.BrowserName),

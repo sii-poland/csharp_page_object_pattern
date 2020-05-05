@@ -14,15 +14,6 @@
 <None Update="allureConfig.json">
 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 </None>
-<None Update="Drivers\chromedriver.exe">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</None>
-<None Update="Drivers\geckodriver.exe">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</None>
-<None Update="Drivers\IEDriverServer.exe">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</None>
 </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +34,7 @@
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="80.0.3987.10600" />
+    <PackageReference Include="WebDriverManager" Version="2.9.1" />
   </ItemGroup>
 
 </Project>
