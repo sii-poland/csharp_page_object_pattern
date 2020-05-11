@@ -21,7 +21,7 @@ dotnet test (in your console) you need to have .NET Core on your computer
 
 ## Use this project 
 
-For now, you can pull and take this project AutomationTestsSiiFramework. Put it to your repository and start using it. In the feature we will add NuGet package and documentation. It will be easier to use in daily life.
+For now, you can pull and take this project AutomationTestsSiiFramework. In two projects AutomationTestSiiFramework.Tests.TheInternet and AutomationTestSiiFramework.Tests.Shop. Put it to your repository and start using it. In the feature we will add NuGet package and documentation. It will be easier to use in daily life.
 
 
 ## appsettings.json - possible to change default values
@@ -31,11 +31,16 @@ For now, you can pull and take this project AutomationTestsSiiFramework. Put it 
 For using parameters you can change values in appsettings.json file.
 
 
-
 ## Allure Report
-After run tests, you can generate a report from your tests. Allure framework generates allure-results directory where we have results from our tests. You need to go to the folder where you're run tests. After that, put below command to cmd or PowerShell:
+After run tests, you can generate a report from your tests. First of all, you need to have "Allure Commandline" on your computer (Go to the documentation https://docs.qameta.io/allure/#_installing_a_commandline)
+
+Allure framework generates allure-results directory where we have results from our tests. You need to go to the folder where you're run tests. In this path run by cmd or PowerShell:
+
 allure serve
 
 ![Allure Report](.\DocumentationImages\allure_report.gif) 
 
 You need to have installed Allure on your machine.
+
+## NuGet 
+We will add NuGet package and documentation for it.
