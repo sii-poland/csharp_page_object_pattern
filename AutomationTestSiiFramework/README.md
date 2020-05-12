@@ -16,12 +16,13 @@ Since everything is set up, the tests can be added and run straight away.
 
 ## Run tests from this repo
 
-dotnet test (in your console) you need to have .NET Core on your computer
+Run dotnet test (in your console in path with .csproj) you need to have .NET Core on your computer
 ![Run Tests](.\DocumentationImages\run_tests.gif)
 
 ## Use this project 
 
-For now, you can pull and take this project AutomationTestsSiiFramework. In two projects AutomationTestSiiFramework.Tests.TheInternet and AutomationTestSiiFramework.Tests.Shop. Put it to your repository and start using it. In the feature we will add NuGet package and documentation. It will be easier to use in daily life.
+For now, you can pull and take this project AutomationTestsSiiFramework. In two projects AutomationTestSiiFramework.Tests.TheInternet and AutomationTestSiiFramework.Tests.Shop. Put it to your repository and start using it. 
+In the feature, we will add NuGet package and documentation. It will be easier to use in daily life.
 
 
 ## appsettings.json - possible to change default values
@@ -29,6 +30,8 @@ For now, you can pull and take this project AutomationTestsSiiFramework. In two 
 ![AppSettings.json](.\DocumentationImages\appsettings.png) 
 
 For using parameters you can change values in appsettings.json file. Each of the projects in this solution has own appsettings.json.
+
+![Presta appsettings.json](.\DocumentationImages\presta_appsettings.png) 
 
 
 ## Allure Report
