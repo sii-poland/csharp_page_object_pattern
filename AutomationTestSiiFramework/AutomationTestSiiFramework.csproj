@@ -12,7 +12,7 @@
 
 <ItemGroup>
 <None Update="allureConfig.json">
-<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 </None>
 </ItemGroup>
 

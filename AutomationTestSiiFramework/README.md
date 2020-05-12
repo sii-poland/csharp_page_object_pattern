@@ -28,7 +28,7 @@ For now, you can pull and take this project AutomationTestsSiiFramework. In two 
 
 ![AppSettings.json](.\DocumentationImages\appsettings.png) 
 
-For using parameters you can change values in appsettings.json file.
+For using parameters you can change values in appsettings.json file. Each of the projects in this solution has own appsettings.json.
 
 
 ## Allure Report
@@ -43,4 +43,4 @@ allure serve
 You need to have installed Allure on your machine.
 
 ## NuGet 
-We will add NuGet package and documentation for it.
+We will add in the future NuGet package and documentation for it.
