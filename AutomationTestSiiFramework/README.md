@@ -33,6 +33,18 @@ For using parameters you can change values in appsettings.json file. Each of the
 
 ![Presta appsettings.json](.\DocumentationImages\presta_appsettings.png) 
 
+## Supported browsers
+- Chrome
+- Firefox
+- InternetExplorer
+- Edge
+
+## Edge prerequisites
+1. Enable developer mode in Windows:
+- Open windows settings → Update & Security → For Developers → select “Developer mode”
+
+2. Install EdgeDriver
+- Open windows settings → App & features → Manage optional features → Add a feature → Add option "Microsoft WebDriver"
 
 ## Allure Report
 After run tests, you can generate a report from your tests. First of all, you need to have "Allure Commandline" on your computer (Go to the documentation https://docs.qameta.io/allure/#_installing_a_commandline)

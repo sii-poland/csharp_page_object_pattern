@@ -26,19 +26,19 @@ namespace AutomationTestSiiFramework.Helpers
             switch (driverConfig.BrowserName)
             {
                 case Browser.Chrome:
-                    new DriverManager ().SetUpDriver (new ChromeConfig ());
+                    new DriverManager().SetUpDriver(new ChromeConfig());
                     var chromeDriver = new ChromeDriver(WebDriverSettings.ChromeOptions(driverConfig));
                     return new WebDriverListener(chromeDriver, logger);
                 case Browser.Firefox:
-                    new DriverManager ().SetUpDriver (new FirefoxConfig());
+                    new DriverManager().SetUpDriver(new FirefoxConfig());
                     var firefoxDriver = new FirefoxDriver(WebDriverSettings.FirefoxOptions(driverConfig));
                     return new WebDriverListener(firefoxDriver, logger);
                 case Browser.InternetExplorer:
-                    new DriverManager ().SetUpDriver (new InternetExplorerConfig());
+                    new DriverManager().SetUpDriver(new InternetExplorerConfig());
                     var ieDriver = new InternetExplorerDriver(WebDriverSettings.InternetExplorerOptions());
                     return new WebDriverListener(ieDriver, logger);
                 case Browser.Edge:
-                    new DriverManager ().SetUpDriver (new EdgeConfig());
+                    new DriverManager().SetUpDriver(new EdgeConfig());
                     var edgeDriver = new EdgeDriver(WebDriverSettings.EdgeOptions());
                     return new WebDriverListener(edgeDriver, logger);
                 default:

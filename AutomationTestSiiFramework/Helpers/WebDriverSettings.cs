@@ -79,10 +79,10 @@ namespace AutomationTestSiiFramework.Helpers
         public static ChromeOptions ChromeOptionsForRemote(WebDriverConfiguration config)
         {
             var options = new ChromeOptions();
-            options.AddAdditionalCapability("enableVNC",true,true);
+            options.AddAdditionalCapability("enableVNC", true, true);
             if (config.Video)
             {
-                options.AddAdditionalCapability ("enableVideo", true, true);
+                options.AddAdditionalCapability("enableVideo", true, true);
             }
 
             return options;
