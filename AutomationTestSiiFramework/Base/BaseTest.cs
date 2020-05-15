@@ -1,5 +1,4 @@
-﻿using AutomationTestSiiFramework.Extensions;
-using AutomationTestSiiFramework.Helpers;
+﻿using AutomationTestSiiFramework.Helpers;
 using LLibrary;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -23,7 +22,6 @@ namespace AutomationTestSiiFramework.Base
         [TearDown]
         public void TearDown()
         {
-            Driver.SaveScreenshot("Screenshot after test");
             Driver.Quit();
         }
 

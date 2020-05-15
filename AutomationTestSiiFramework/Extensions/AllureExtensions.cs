@@ -20,7 +20,7 @@ namespace AutomationTestSiiFramework.Extensions
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
 
-        public static void SaveScreenshot(this IWebDriver driver, string title)
+        public static void SaveScreenshot(this IWebDriver driver, string title, L logger)
         {
             string path = null;
             try
@@ -37,6 +37,7 @@ namespace AutomationTestSiiFramework.Extensions
             catch (Exception ex)
             {
                 Console.WriteLine($"Taking a screenshot failed: {ex.Message}");
+                logger.Error($"Error with screenshot path: {path} title: {title}");
             }
         }
     }
