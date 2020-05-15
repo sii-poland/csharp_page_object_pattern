@@ -31,7 +31,7 @@ namespace AutomationTestSiiFramework.Helpers
         private void WebDriverListener_ElementClicked(object sender,
             WebElementEventArgs e)
         {
-            LogScreenshot($"{e.Element} clicked");
+            LogMessage($"{e.Element} clicked");
         }
 
         private void WebDriverListener_ElementClicking(object sender,
@@ -49,13 +49,13 @@ namespace AutomationTestSiiFramework.Helpers
         private void WebDriverListener_ElementValueChanged(object sender,
             WebElementValueEventArgs e)
         {
-            LogScreenshot($"Value of the {e.Element} changed to `{e.Value}`");
+            LogMessage($"Value of the {e.Element} changed to `{e.Value}`");
         }
 
         private void WebDriverListener_Navigated(object sender,
             WebDriverNavigationEventArgs e)
         {
-            LogScreenshot($"Navigated to [{e.Driver.Title}]({e.Url})");
+            LogMessage($"Navigated to [{e.Driver.Title}]({e.Url})");
         }
 
         private void LogMessage(string text)
@@ -65,7 +65,7 @@ namespace AutomationTestSiiFramework.Helpers
 
         private void LogScreenshot(string text)
         {
-            _driver.SaveScreenshot(text, _logger);
+            _driver.SaveScreenshot(text);
         }
     }
 }
