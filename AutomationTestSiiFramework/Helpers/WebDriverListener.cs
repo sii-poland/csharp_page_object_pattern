@@ -65,7 +65,7 @@ namespace AutomationTestSiiFramework.Helpers
 
         private void LogScreenshot(string text)
         {
-            _driver.SaveScreenshot(text, _logger);
+            _driver.TakeStandardScreenshot(text);
         }
     }
 }
