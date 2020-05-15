@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using Allure.Commons;
 using AutomationTestSiiFramework.Helpers;
-using LLibrary;
 using OpenQA.Selenium;
 using WDSE;
 using WDSE.Decorators;
@@ -14,31 +13,65 @@ namespace AutomationTestSiiFramework.Extensions
 {
     public static class AllureExtensions
     {
-        private static string CleanFileName(string fileName)
+        private static string GetCleanFileName(string fileName)
         {
             return Path.GetInvalidFileNameChars()
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
 
-        public static void SaveScreenshot(this IWebDriver driver, string title, L logger)
+        private static string GetPathToFile(string title)
         {
-            string path = null;
+            var path = $"{Configuration.WebDriver.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
+            Directory.CreateDirectory(path);
+            var pathToFile =
+                $"{path}\\{GetCleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
+            return pathToFile;
+        }
+
+        public static void TakeFullPageScreenshot(this IWebDriver driver, string title)
+        {
+            driver.SaveScreenshot(title, true);
+        }
+
+        public static void TakeStandardScreenshot(this IWebDriver driver, string title)
+        {
+            driver.SaveScreenshot(title, false);
+        }
+
+        private static void SaveScreenshot(this IWebDriver driver, string title, bool fullPage)
+        {
             try
             {
-                title = CleanFileName(title);
-                path = $"{Configuration.WebDriver.ScreenshotsPath}\\{title}{DateTime.Now:HH}";
-                Directory.CreateDirectory(path);
-                var pathToFile =
-                    $"{path}\\{CleanFileName(DateTime.UtcNow.ToLongTimeString())}_{Thread.CurrentThread.ManagedThreadId}.png";
-                var bytesArr = driver.TakeScreenshot(new VerticalCombineDecorator(new ScreenshotMaker()));
-                bytesArr.ToMagickImage().Write(pathToFile);
+                title = GetCleanFileName(title);
+                var pathToFile = GetPathToFile(GetCleanFileName(title));
+
+                if (fullPage)
+                {
+                    driver.SaveFullPageScreenshot(pathToFile);
+                }
+                else
+                {
+                    driver.SaveStandardScreenshot(pathToFile);
+                }
+
                 AllureLifecycle.Instance.AddAttachment(pathToFile, title);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Taking a screenshot failed: {ex.Message}");
-                logger.Error($"Error with screenshot path: {path} title: {title}");
             }
+        }
+
+        private static void SaveFullPageScreenshot(this IWebDriver driver, string pathToFile)
+        {
+            var bytesArr = driver.TakeScreenshot(new VerticalCombineDecorator(new ScreenshotMaker()));
+            bytesArr.ToMagickImage().Write(pathToFile);
+        }
+
+        private static void SaveStandardScreenshot(this IWebDriver driver, string pathToFile)
+        {
+            var screenshot = ((ITakesScreenshot) driver).GetScreenshot();
+            screenshot.SaveAsFile(pathToFile, ScreenshotImageFormat.Png);
         }
     }
 }
