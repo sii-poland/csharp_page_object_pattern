@@ -16,8 +16,12 @@ Since everything is set up, the tests can be added and run straight away.
 
 ## Run tests from this repo
 
-Run dotnet test (in your console in path with .csproj) you need to have .NET Core on your computer
-![Run Tests](.\DocumentationImages\run_tests.gif)
+Run 
+```  
+dotnet test
+```  
+(in your console in path with .csproj) you need to have .NET Core on your computer
+![Run Tests](DocumentationImages/run_tests.gif)
 
 ## Use this project 
 
@@ -27,11 +31,11 @@ In the feature, we will add NuGet package and documentation. It will be easier t
 
 ## appsettings.json - possible to change default values
 
-![AppSettings.json](.\DocumentationImages\appsettings.png) 
+![AppSettings.json](DocumentationImages/appsettings.png) 
 
 For using parameters you can change values in appsettings.json file. Each of the projects in this solution has own appsettings.json.
 
-![Presta appsettings.json](.\DocumentationImages\presta_appsettings.png) 
+![Presta appsettings.json](DocumentationImages/presta_appsettings.png) 
 
 ## Supported browsers
 - Chrome
@@ -50,10 +54,10 @@ For using parameters you can change values in appsettings.json file. Each of the
 After run tests, you can generate a report from your tests. First of all, you need to have "Allure Commandline" on your computer (Go to the documentation https://docs.qameta.io/allure/#_installing_a_commandline)
 
 Allure framework generates allure-results directory where we have results from our tests. You need to go to the folder where you're run tests. In this path run by cmd or PowerShell:
-
+```  
 allure serve
-
-![Allure Report](.\DocumentationImages\allure_report.gif) 
+```  
+![Allure Report](DocumentationImages/allure_report.gif) 
 
 You need to have installed Allure on your machine.
 
