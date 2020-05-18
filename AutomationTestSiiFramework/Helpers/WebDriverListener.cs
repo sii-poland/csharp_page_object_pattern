@@ -1,4 +1,4 @@
-﻿using AutomationTestSiiFramework.Extensions;
+﻿using AutomationTestSiiFramework.Extensions.WebDriver;
 using LLibrary;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Events;
