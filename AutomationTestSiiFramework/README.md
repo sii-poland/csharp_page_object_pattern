@@ -18,8 +18,9 @@ Since everything is set up, the tests can be added and run straight away.
 ```  
 dotnet test 
 ```  
+
 (in your console) you need to have .NET Core on your computer
-![Run Tests](\DocumentationImages\run_tests.gif)
+![Run Tests](./DocumentationImages/run_tests.gif)
 
 ## Use this project 
 
@@ -28,7 +29,7 @@ For now, you can pull and take this project AutomationTestsSiiFramework. Put it 
 
 ## appsettings.json - possible to change default values
 
-![AppSettings.json](/DocumentationImages/appsettings.png) 
+![AppSettings.json](./DocumentationImages/appsettings.png) 
 
 For using parameters you can change values in appsettings.json file.
 
@@ -38,6 +39,6 @@ For using parameters you can change values in appsettings.json file.
 After run tests, you can generate a report from your tests. Allure framework generates allure-results directory where we have results from our tests. You need to go to the folder where you're run tests. After that, put below command to cmd or PowerShell:
 allure serve
 
-![Allure Report](/DocumentationImages/allure_report.gif) 
+![Allure Report](./DocumentationImages/allure_report.gif) 
 
 You need to have installed Allure on your machine.
